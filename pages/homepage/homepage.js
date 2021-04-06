@@ -1,4 +1,6 @@
 // pages/homepage/homepage.js
+const app = getApp()
+
 Page({
 
   /**
@@ -64,6 +66,32 @@ Page({
     ]
   },
 
+  userToMarker(user) {
+    console.log(user)
+    let marker = {
+      id: user.id,
+      name: user.wechat_account,
+      status: user.status,
+      latitude: user.location.latitude,
+      longitude: user.location.longitude,
+      width: 24,
+      height: 28
+    }
+    marker.iconPath = this.iconPathColor(marker.status)
+    console.log("marker is", marker)
+    return marker
+  },
+
+  iconPathColor(status) {
+    if (status=== "healthy") {
+      return '/testpins/Talon-blue-pin.png'}
+    else if (status === "critical") {
+      return '/testpins/Talon-red-pin.png'
+    } else {
+      return '/testpins/Talon-orange-pin.png'
+    }
+  },
+
   bindregionchange(e) {
     console.log('=bindregiοnchange=', e)
   },
@@ -94,9 +122,10 @@ Page({
     })
   },
 
-  onLoad: function (options) {
-    var that = this;
 
+  onLoad: function (options) {
+
+    var that = this;
     wx.getLocation({
       type: "wgs84",
       success: function (res) {
@@ -123,7 +152,24 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let page = this;
+    let base = app.globalData.baseUrl;
+    let markers = page.data.markers
+    wx.request({
+      url: `${base}/users`,
+      success(res) {
+        console.log("res", res)
+        let users = res.data.users
+        let markers = users.map((user) => {
+          return page.userToMarker(user)
+          console.log("user is", user)
+        })
+        console.log(markers)
+        page.setData({markers})
+        // page.data.markers.push(res.data.users)
+        // console.log(markers)
+      }
+    })
   },
 
   /**
