@@ -1,0 +1,18 @@
+<!--pages/audio/audio.wxml-->
+<audio  style="display: none" src="{{src}}" id="myAudio" controls loop></audio>
+
+<view wx:if="{{alarm === false}}">
+  <image class="bell" bindtap="audioPlay" id="myAudio"style="background-image: url('../files/bell.jpg')"></image>
+</view>
+<view wx:else>
+  <image class="bell" bindtap="audioPause" id="myAudio" style="background-image: url('../files/bell.jpg')"></image>
+</view>
+
+<button bindtap="takePhoto">Take Picture</button>
+
+<view wx:if="{{status === 'critical'}}">
+  <button style="color: red" bindtap="updateStatus">CRITICAL</button>
+</view>
+<view wx:else>
+  <button style="background-color: orange" bindtap="updateStatus">NON-CRITICAL</button>
+</view>

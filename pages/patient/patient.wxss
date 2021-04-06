@@ -1,0 +1,7 @@
+.bell {
+  height: 150rpx;
+  width: 150rpx;
+  margin: 24rpx;
+  background-image: url('https://www.flaticon.com/svg/vstatic/svg/1157/1157000.svg?token=exp=1617615975~hmac=a62547cca33e667d5e326becee40cfd9');
+  background-size: cover;
+}
