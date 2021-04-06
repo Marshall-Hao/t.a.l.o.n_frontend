@@ -38,11 +38,17 @@ Page({
     console.log(e.detail)
   },
 
-  updateStatus(){
+  updateCritical(){
     let page = this
     let status = page.data.status = 'non-critical'
     page.setData({status})
     console.log(status)
+  },
+
+  updateNonCritical() {
+    let page = this
+    let status = page.data.status = 'critical'
+    page.setData({status})
   },
 
   onLoad() {

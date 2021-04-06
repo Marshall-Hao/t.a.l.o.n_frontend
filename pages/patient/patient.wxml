@@ -11,8 +11,8 @@
 <button bindtap="takePhoto">Take Picture</button>
 
 <view wx:if="{{status === 'critical'}}">
-  <button style="color: red" bindtap="updateStatus">CRITICAL</button>
+  <button style="color: red" bindtap="updateCritical">CRITICAL</button>
 </view>
 <view wx:else>
-  <button style="background-color: orange" bindtap="updateStatus">NON-CRITICAL</button>
+  <button style="background-color: orange" bindtap="updateNonCritical">NON-CRITICAL</button>
 </view>
