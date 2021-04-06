@@ -1,8 +1,12 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs", 
+    "pages/patient/patient"
   ],
+
+  "requiredBackgroundModes": ["audio"],
+
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
