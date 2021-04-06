@@ -2,8 +2,12 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/homepage/homepage"
+    "pages/homepage/homepage",
+    "pages/patient/patient"
   ],
+
+  "requiredBackgroundModes": ["audio"],
+
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
