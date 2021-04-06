@@ -7,7 +7,8 @@ Page({
   data: {
       src: '../files/alarm.mp3',
       alarm: false,
-      user: {}
+      user: {},
+      currentUser: {}
   },
 
   audioPlay: function (e) {
@@ -39,20 +40,32 @@ Page({
     console.log(e.detail)
   },
 
-  updateCritical(){
+  updateCritical(e){
+    console.log(e)
     let page = this
-    let status = page.data.status = 'non-critical'
+    let status = page.data.currentUser.status = 'non-critical'
+    let id = e.currentTarget.dataset.id.id
+    let base = app.globalData.baseUrl
     page.setData({status})
-    console.log(status)
+    let data = e.currentTarget.dataset.id
+    wx.request({
+      url: `${base}/users/${id}`,
+      method: 'PUT',
+      data, 
+      success(res){
+        console.log(res)
+      }
+    })
   },
 
   updateNonCritical() {
     let page = this
-    let status = page.data.status = 'critical'
+    let status = page.data.currentUser.status = 'critical'
     page.setData({status})
+    console.log(page.data.currentUser.status)
   },
 
-  onLoad(user) {
+  onLoad: function (user) {
     this.ctx = wx.createCameraContext()
     this.setData({user})
   },
@@ -64,9 +77,14 @@ Page({
   onShow: function () {
     let page = this
     let base = app.globalData.baseUrl
-    let user = page.user
+    let user = page.data.user
     wx.request({
-      url: `${base}/stories/${user.id}`,
+      url: `${base}/users/${user.id}`,
+      success(res) {
+        const currentUser = res.data;
+        page.setData({currentUser})
+        console.log(currentUser)
+      }
     })
   }
 })
