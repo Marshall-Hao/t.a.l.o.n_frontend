@@ -1,0 +1,34 @@
+<view class="" hover-class="none" hover-stop-propagation="false" style="width: 100%; height: 100%;">
+
+<map id="map" longitude="{{longitude}}" latitude=" {{latitude}}" markers="{{markers}}" scale="14" show-location
+  style="width: 100%; height: 100%;" bindmarkertap="markertap" bindregionchange="bindregionchange" bindtap="bindtapMap">
+    <!-- 弹窗 -->
+  <view class="pop-up {{ showDialog ? 'pop-up--show' : '' }}" >
+    <view class="pop-up__mask" />
+      <!-- 内容 -->
+      <view class="pop-up-container">
+
+          <view class="content">
+              <image class="pop-up-img" src='https://mutuan.com/uploads/image/20200114/76bb076b83357af1c31eb2636a8afca4.jpg'></image>
+              <view class="cards">
+                  <view class="user-info">{{userInfo.name}}</view>
+                  
+                  <view class="status">{{userInfo.status}}</view>
+                  <view class="description">
+                      <view class="details">SOS</view>
+                      <view class="need-help">
+                          <icon class="iconfontlsda iconlocate-02"></icon>
+                          <text>50km (api no.?)</text>
+                      </view>
+                  </view>
+              </view>
+          </view>
+          
+      </view>
+  </view>
+
+
+</map>
+
+</view>
+
