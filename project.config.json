@@ -76,6 +76,14 @@
           "id": -1,
           "name": "pages/patient/patient",
           "pathName": "pages/patient/patient",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 1,
+          "name": "Homepage",
+          "pathName": "pages/homepage/homepage",
+          "query": "",
           "scene": null
         }
       ]

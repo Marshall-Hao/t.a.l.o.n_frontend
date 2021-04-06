@@ -1,3 +1,4 @@
+const app = getApp()
 Page({
 
   /**
@@ -6,7 +7,7 @@ Page({
   data: {
       src: '../files/alarm.mp3',
       alarm: false,
-      status: 'critical'
+      user: {}
   },
 
   audioPlay: function (e) {
@@ -51,11 +52,21 @@ Page({
     page.setData({status})
   },
 
-  onLoad() {
+  onLoad(user) {
     this.ctx = wx.createCameraContext()
+    this.setData({user})
   },
 
   onReady: function () {
     this.audioCtx = wx.createAudioContext('myAudio')
+  }, 
+
+  onShow: function () {
+    let page = this
+    let base = app.globalData.baseUrl
+    let user = page.user
+    wx.request({
+      url: `${base}/stories/${user.id}`,
+    })
   }
 })

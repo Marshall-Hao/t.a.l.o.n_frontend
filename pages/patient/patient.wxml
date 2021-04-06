@@ -1,4 +1,3 @@
-<!--pages/audio/audio.wxml-->
 <audio  style="display: none" src="{{src}}" id="myAudio" controls loop></audio>
 
 <view wx:if="{{alarm === false}}">

@@ -66,6 +66,14 @@ Page({
     ]
   },
 
+  goToPatient: function(event){
+    const id = 5
+    // I put id = 5 as we don't have the login, this ID will be changed by the currentUser.id (the one who has logged in)
+    wx.navigateTo({
+      url: `/pages/patient/patient?id=${id}`,
+    })
+  },
+
   userToMarker(user) {
     console.log(user)
     let marker = {
@@ -161,8 +169,8 @@ Page({
         console.log("res", res)
         let users = res.data.users
         let markers = users.map((user) => {
-          return page.userToMarker(user)
           console.log("user is", user)
+          return page.userToMarker(user)
         })
         console.log(markers)
         page.setData({markers})
