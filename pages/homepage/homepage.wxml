@@ -7,12 +7,10 @@
     <view class="pop-up__mask" />
       <!-- 内容 -->
       <view class="pop-up-container">
-
           <view class="content">
               <image class="pop-up-img" src="{{userInfo.avatarUrl}}"></image>
               <view class="cards">
                   <view class="user-info">{{talonUserInfo.name}}</view>
-                  
                   <view class="status">{{talonUserInfo.status}}</view>
                   <view class="description">
                       <view class="details">SOS</view>
@@ -23,12 +21,19 @@
                   </view>
               </view>
           </view>
-          
       </view>
   </view>
-
-  
 </map>
+<view class="userinfo">
+  <block wx:if="{{!hasUserInfo}}">
+    <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> Sign in</button>
+    <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> Sign innn</button>
+  </block>
+  <!-- <block wx:else>
+    <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </block> -->
+</view>
 
 <view class="userinfo">
   <block wx:if="{{!hasUserInfo}}">
@@ -42,6 +47,11 @@
 </view>
 
 <button wx:if="{{hasUserInfo}}" bindtap="goToPatient" data-id="{{markers}}" class="btn-SOS">S.O.S</button>
-
+  
+  <view class="logo">
+    <image src="/Image/Talon-logo.png" alt=""></image>
+  </view>
 </view>
+
+
 
