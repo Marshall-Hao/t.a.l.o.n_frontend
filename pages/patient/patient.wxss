@@ -1,27 +1,19 @@
-<<<<<<< HEAD
 page {height: 100%;margin: 0;padding: 0;}
 
 .patient-flexbox {
   margin-top: 50rpx;
   display: flex;
   justify-content: space-around
-=======
-.bell-container {
-
->>>>>>> master
 }
 
 .bell {
   height: 200rpx;
   width: 230rpx;
   margin: 24rpx;
-  margin-top: 150rpx;
-  margin-left: 300rpx;
   background-image: url('https://www.flaticon.com/svg/vstatic/svg/1157/1157000.svg?token=exp=1617615975~hmac=a62547cca33e667d5e326becee40cfd9');
   background-size: cover;
 }
 
-<<<<<<< HEAD
 .camera {
   background-image: url('https://www.creativefabrica.com/wp-content/uploads/2019/05/Camera-icon-by-Muhazdinata-580x386.jpg');
   height: 200rpx;
@@ -53,7 +45,7 @@ page {height: 100%;margin: 0;padding: 0;}
 .need-help text{font-size: 28rpx;color: #0be200;}
 .viewlittle{width: 60rpx;height: 60rpx;overflow: hidden;background-color: #fff;position: fixed;bottom: 50rpx;right: 20rpx;display: flex;justify-content: center;align-items: center;border-radius: 8rpx;z-index: 1002}
 .viewlittle image{width: 50rpx;height: 50rpx;vertical-align: bottom;}
-=======
+
 .take-picture-btn {
   margin-top: 100rpx;
   margin-bottom: 100rpx;
@@ -75,4 +67,3 @@ page {height: 100%;margin: 0;padding: 0;}
   align-items: center;
 
 }
->>>>>>> master
