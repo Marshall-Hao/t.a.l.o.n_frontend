@@ -39,6 +39,12 @@
         {
           "name": "landing mode",
           "pathName": "pages/landing/landing",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "Patient",
+          "pathName": "pages/index/index",
           "scene": null
         }
       ]

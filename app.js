@@ -15,8 +15,8 @@ App({
   // },
   onLaunch: function () {
     const host = this.globalData.baseUrl
-    console.log('host is :', host)
-    console.log('beginning login')
+    // console.log('host is :', host)
+    // console.log('beginning login')
     wx.login({
       success: (res) => {
         console.log(res)
@@ -29,7 +29,7 @@ App({
           success: (res) => {
             // console.log(res)
             this.globalData.userId = res.data.userId
-            console.log("login successful, user ID is:", this.globalData.userId)
+            // console.log("login successful, user ID is:", this.globalData.userId)
           }
         // insert next code here
         })
@@ -39,5 +39,6 @@ App({
   globalData: {
     // userInfo: null,
     baseUrl: 'http://localhost:3000/api/v1'
+    //baseUrl: 'https://t-a-l-o-n.herokuapp.com/api/v1'
   }
 })

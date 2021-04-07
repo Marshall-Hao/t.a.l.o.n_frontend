@@ -1,17 +1,23 @@
-<audio  style="display: none" src="{{src}}" id="myAudio" controls loop></audio>
+<view class="" hover-class="none" hover-stop-propagation="false" style="width: 100%; height: 50%">
 
-<view wx:if="{{alarm === false}}">
-  <image class="bell" bindtap="audioPlay" id="myAudio"style="background-image: url('../files/bell.jpg')"></image>
+<map id="map" longitude="{{longitude}}" latitude=" {{latitude}}" markers="{{markers}}" scale="14" show-location
+  style="width: 100%; height: 100%;" bindmarkertap="markertap" bindregionchange="bindregionchange" bindtap="bindtapMap">
+</map>
+
+<view class="patient-flexbox">
+  <audio  style="display: none" src="{{src}}" id="myAudio" controls loop></audio>
+  <view wx:if="{{alarm === false}}">
+    <image class="bell" bindtap="audioPlay" id="myAudio"style="background-image: url('https://i.fbcd.co/products/resized/resized-750-500/903ac15317c4132beafa9480e780aa9ddcb91d2a6f64e3a198baf9f4232eedab.jpg')"></image>
+  </view>
+  <view wx:else>
+    <image class="bell" bindtap="audioPause" id="myAudio" style="background-image: url('https://i.fbcd.co/products/resized/resized-750-500/903ac15317c4132beafa9480e780aa9ddcb91d2a6f64e3a198baf9f4232eedab.jpg')"></image>
+  </view>
+  <view bindtap="takePhoto" class='camera' style="background-image: url('https://img.icons8.com/carbon-copy/2x/camera--v2.png')"></view>
+</view>
+<view class="btn-status" wx:if="{{currentUser.status === 'critical'}}">
+  <button data-id="{{currentUser}}"style="color: red" bindtap="updateCritical">I am not in critical condition</button>
 </view>
 <view wx:else>
-  <image class="bell" bindtap="audioPause" id="myAudio" style="background-image: url('../files/bell.jpg')"></image>
+  <button class="btn-status" data-id="{{currentUser}}"style="background-color: orange" bindtap="updateNonCritical">I am in critical condition</button>
 </view>
-
-<button bindtap="takePhoto">Take Picture</button>
-
-<view wx:if="{{currentUser.status === 'critical'}}">
-  <button data-id="{{currentUser}}"style="color: red" bindtap="updateCritical">NON-CRITICAL</button>
-</view>
-<view wx:else>
-  <button data-id="{{currentUser}}"style="background-color: orange" bindtap="updateNonCritical">CRITICAL</button>
 </view>
