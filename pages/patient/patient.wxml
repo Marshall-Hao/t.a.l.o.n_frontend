@@ -1,17 +1,20 @@
 <audio  style="display: none" src="{{src}}" id="myAudio" controls loop></audio>
 
-<view wx:if="{{alarm === false}}">
-  <image class="bell" bindtap="audioPlay" id="myAudio"style="background-image: url('../files/bell.jpg')"></image>
-</view>
-<view wx:else>
-  <image class="bell" bindtap="audioPause" id="myAudio" style="background-image: url('../files/bell.jpg')"></image>
-</view>
+<div class="bell-container">
+  <view wx:if="{{alarm === false}}">
+    <image class="bell" bindtap="audioPlay" id="myAudio"style="background-image: url('../files/bell.jpg')"></image>
+  </view>
+  <view wx:else>
+    <image class="bell" bindtap="audioPause" id="myAudio" style="background-image: url('../files/bell.jpg')"></image>
+  </view>
+</div>
 
-<button bindtap="takePhoto">Take Picture</button>
+
+<button bindtap="takePhoto" class="take-picture-btn">Take Picture</button>
 
 <view wx:if="{{currentUser.status === 'critical'}}">
-  <button data-id="{{currentUser}}"style="color: red" bindtap="updateCritical">NON-CRITICAL</button>
+  <button data-id="{{currentUser}}"style="color: red" bindtap="updateCritical" class="update-crit-btn">NON-CRITICAL</button>
 </view>
 <view wx:else>
-  <button data-id="{{currentUser}}"style="background-color: orange" bindtap="updateNonCritical">CRITICAL</button>
+  <button data-id="{{currentUser}}"style="background-color: orange" bindtap="updateNonCritical" class="update-non-crit-btn">CRITICAL</button>
 </view>

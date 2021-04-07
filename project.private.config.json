@@ -13,8 +13,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "test",
-          "pathName": "pages/test/test",
+          "name": "patient",
+          "pathName": "pages/patient/patient",
           "query": "",
           "scene": null
         },
@@ -39,6 +39,7 @@
         {
           "name": "landing mode",
           "pathName": "pages/landing/landing",
+          "query": "",
           "scene": null
         }
       ]

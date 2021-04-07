@@ -1,5 +1,4 @@
-<view class="" hover-class="none" hover-stop-propagation="false" style="width: 100%; height: 65%;">
-
+<view class="" hover-class="none" hover-stop-propagation="false" style="width: 100%; height: 90%;">
 <map id="map" longitude="{{longitude}}" latitude=" {{latitude}}" markers="{{markers}}" scale="14" show-location
   style="width: 100%; height: 100%;" bindmarkertap="markertap" bindregionchange="bindregionchange" bindtap="bindtapMap">
     <!-- 弹窗 -->
@@ -7,12 +6,10 @@
     <view class="pop-up__mask" />
       <!-- 内容 -->
       <view class="pop-up-container">
-
           <view class="content">
-              <image class="pop-up-img" src='https://mutuan.com/uploads/image/20200114/76bb076b83357af1c31eb2636a8afca4.jpg'></image>
+              <image class="pop-up-img" src="{{userInfo.avatarUrl}}"></image>
               <view class="cards">
                   <view class="user-info">{{talonUserInfo.name}}</view>
-                  
                   <view class="status">{{talonUserInfo.status}}</view>
                   <view class="description">
                       <view class="details">SOS</view>
@@ -23,27 +20,26 @@
                   </view>
               </view>
           </view>
-          
       </view>
   </view>
-
-  
 </map>
-
-<view class="container">
-  <view class="userinfo">
-    <block wx:if="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
+<view class="userinfo">
+  <block wx:if="{{!hasUserInfo}}">
+    <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> Sign in</button>
+    <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> Sign innn</button>
+  </block>
+  <!-- <block wx:else>
+    <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </block> -->
 </view>
 
-<button  bindtap="goToPatient" data-id="{{markers}}" class="btn-SOS">S.O.S</button>
-
+  <button wx:if="{{hasUserInfo}}" bindtap="goToPatient" data-id="{{markers}}" class="btn-SOS">S.O.S</button>
+  
+  <div class="logo">
+    <image src="/Image/Talon-logo.png" alt=""></image>
+  </div>
 </view>
+
+
 

@@ -1,7 +1,35 @@
+.bell-container {
+
+}
+
 .bell {
   height: 150rpx;
   width: 150rpx;
   margin: 24rpx;
+  margin-top: 150rpx;
+  margin-left: 300rpx;
   background-image: url('https://www.flaticon.com/svg/vstatic/svg/1157/1157000.svg?token=exp=1617615975~hmac=a62547cca33e667d5e326becee40cfd9');
   background-size: cover;
+}
+
+.take-picture-btn {
+  margin-top: 100rpx;
+  margin-bottom: 100rpx;
+  background: linear-gradient(
+        100deg
+        , #040c7e -1.59%, #126877 103.57%);
+            box-shadow: 5px 6px 11px 2px rgb(0 0 0 / 40%), inset -3px -3px 13px -1px rgb(0 0 0 / 75%), inset 10px 10px 21px 3px rgb(204 127 127 / 50%);
+  color: white;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.update-non-crit-btn {
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
