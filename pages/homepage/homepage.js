@@ -11,67 +11,41 @@ Page({
     hasUserInfo: false,
     canIUseGetUserProfile: false,
     showDialog: false,
-    longitude: 113.14278, //地图界面中心的经度
-    latitude: 23.02882, //地图界面中心的纬度
+    longitude: 0, //地图界面中心的经度
+    latitude: 0, //地图界面中心的纬度
     talonUserInfo: {
       name: '',
       status: ''
     },
-    markers: [ //标志点的位置
-      //位置1
-      {
-        id: 1,
-        // callout: {
-        //   content: "fuck this",
-        //   fontSize: 20,
-        //   padding: 20,
-        // },
-        name: "Desmond",
-        iconPath: '/testpins/Talon-red-pin.png',
-        status: "critical",
-        latitude: 22.524689,
-        longitude: 113.937271,
-        width: 24,
-        height: 28
-      },
-      //位置2
-      {
-        id: 2,
-        // iconPath: "images1.jpeg",
-        // callout: {
-        //   content: "fuck this",
-        //   fontSize: 20,
-        //   padding: 40
-        // },
-        name: "Kevin",
-        role: 'medic',
-        status: "non-critical",
-        image: '',
-        iconPath: "/testpins/Talon-orange-pin.png",
-        latitude: 22.522807,
-        longitude: 113.935338,
-        width: 24,
-        height: 28
-      },
-      //位置3
-      {
-        id: 3,
-        name: "Marshall",
-        status: "healthy",
-        iconPath: '/testpins/Talon-blue-pin.png',
-        // iconPath: "images1.jpeg",
-        latitude: 22.53535,
-        longitude: 113.920322,
-        width: 24,
-        height: 28
-      },
-
-    ]
+    markers: []
   },
 
-  goToPatient: function(event){
-    const id = 5
-    // I put id = 5 as we don't have the login, this ID will be changed by the currentUser.id (the one who has logged in)
+  updateCurrentUser(data, callback = null) {
+    let page = this
+    let id = app.globalData.userId;
+    let base = app.globalData.baseUrl
+    console.log("callback:!", callback)
+    wx.request({
+      url: `${base}/users/${id}`,
+      method: 'PUT',
+      data,
+      success(res) {
+      if (callback)  callback(id)
+      }
+    })
+  },
+
+  goToPatient: function (event) {
+    let id = app.globalData.userId;
+    let data = {
+      role: 'patient',
+      status: 'critical'
+    }
+    let callback = this.navigateToPatient
+    this.updateCurrentUser(data, callback)
+  },
+
+  navigateToPatient(id) {
     wx.navigateTo({
       url: `/pages/patient/patient?id=${id}`,
     })
@@ -94,9 +68,9 @@ Page({
   },
 
   iconPathColor(status) {
-    if (status=== "healthy") {
-      return '/testpins/Talon-blue-pin.png'}
-    else if (status === "critical") {
+    if (status === "healthy") {
+      return '/testpins/Talon-blue-pin.png'
+    } else if (status === "critical") {
       return '/testpins/Talon-red-pin.png'
     } else {
       return '/testpins/Talon-orange-pin.png'
@@ -122,56 +96,43 @@ Page({
     // console.log('id:', id)
     // var name = this.data.markers[id - 1].name
     // console.log("name:", name)
-    let userInfo = this.data.talonUserInfo
-    userInfo.name = this.data.markers[id - 1].name
-    userInfo.status = this.data.markers[id - 1].status
+    let talonUserInfo = this.data.talonUserInfo
+    let marker = this.data.markers.find((marker) => {
+      return marker.id === id
+    })
+    talonUserInfo.name = marker.name
+    talonUserInfo.status = marker.status
     // console.log(userInfo)
     this.setData({
-      // lingyuanName: name,
-      talonUserInfo: userInfo,
+      talonUserInfo,
       showDialog: !this.data.showDialog,
     })
   },
   getUserProfile(e) {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
     // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    let page = this
     wx.getUserProfile({
       desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
         // console.log('res:', res)
         let wechatAccountNickname = res.userInfo.nickName
-        console.log("wechatAccountNickname:", wechatAccountNickname)
-        let base = app.globalData.baseUrl;
-        let id = app.globalData.userId;
-        let longitude = page.data.longitude
-        let latitude = page.data.latitude
-        console.log("longitude:",longitude)
-        console.log("latitude:",latitude)
-        wx.request({
-          url: `${base}/users/${id}`,
-          method: 'PUT',
-          data: {
-            wechat_account: wechatAccountNickname,
-            // location: "test location"
-            location: {
-                latitude: latitude,
-                longitude: longitude
-              }
-            },
-          success(res){
-            console.log("res:",res)
-
-          }
-    
-        })
+        let longitude = this.data.longitude
+        let latitude = this.data.latitude
+        let data = {
+          wechat_account: wechatAccountNickname,
+          location: {
+            latitude: latitude,
+            longitude: longitude
+          },
+        }
+      this.updateCurrentUser(data)
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
       }
     })
-  },
+},
   getUserInfo(e) {
     // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
     this.setData({
@@ -190,6 +151,7 @@ Page({
     var that = this;
     wx.getLocation({
       type: "wgs84",
+      isHighAccuracy: true,
       success: function (res) {
         var latitude = res.latitude;
         var longitude = res.longitude;
@@ -227,7 +189,9 @@ Page({
           return page.userToMarker(user)
         })
         // console.log(markers)
-        page.setData({markers})
+        page.setData({
+          markers
+        })
         // page.data.markers.push(res.data.users)
         // console.log(markers)
       }

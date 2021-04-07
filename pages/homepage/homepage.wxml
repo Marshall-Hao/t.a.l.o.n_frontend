@@ -11,7 +11,7 @@
           <view class="content">
               <image class="pop-up-img" src="{{userInfo.avatarUrl}}"></image>
               <view class="cards">
-                  <view class="user-info">{{talonUserInfo.name}}</view>
+                  <view class="user-info">{{userInfo.nickName}}</view>
                   
                   <view class="status">{{talonUserInfo.status}}</view>
                   <view class="description">
@@ -41,7 +41,10 @@
   </block> -->
 </view>
 
-<button wx:if="{{hasUserInfo}}" bindtap="goToPatient" data-id="{{markers}}" class="btn-SOS">S.O.S</button>
+<button wx:if="{{hasUserInfo}}" bindtap="goToPatient" data-id="{{userInfo.id}}" class="btn-SOS">S.O.S</button>
 
+  <view class="logo">
+    <image src="/Image/Talon-logo.png" alt=""></image>
+  </view>
 </view>
 
