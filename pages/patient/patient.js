@@ -8,7 +8,48 @@ Page({
       src: '../files/alarm.mp3',
       alarm: false,
       user: {},
-      currentUser: {}
+      currentUser: {},
+      longitude: 113.14278, //地图界面中心的经度
+      latitude: 23.02882, //地图界面中心的纬度
+
+      markers: [ //标志点的位置
+        //位置1
+        {
+          id: 1,
+          name: "Desmond",
+          iconPath: '/testpins/Talon-red-pin.png',
+          status: "critical",
+          latitude: 22.524689,
+          longitude: 113.937271,
+          width: 24,
+          height: 28
+        },
+        //位置2
+        {
+          id: 2,
+          name: "Kevin",
+          role: 'medic',
+          status: "non-critical",
+          image: '',
+          iconPath: "/testpins/Talon-orange-pin.png",
+          latitude: 22.522807,
+          longitude: 113.935338,
+          width: 24,
+          height: 28
+        },
+        //位置3
+        {
+          id: 3,
+          name: "Marshall",
+          status: "healthy",
+          iconPath: '/testpins/Talon-blue-pin.png',
+          latitude: 22.53535,
+          longitude: 113.920322,
+          width: 24,
+          height: 28
+        },
+  
+      ]
   },
 
   updateCurrentUser(currentUser) {
@@ -76,10 +117,50 @@ Page({
     return page.updateCurrentUser(currentUser)
   },
 
+  userToMarker(user) {
+    // console.log(user)
+    let marker = {
+      id: user.id,
+      name: user.wechat_account,
+      status: user.status,
+      latitude: user.location.latitude,
+      longitude: user.location.longitude,
+      width: 24,
+      height: 28
+    }
+    marker.iconPath = this.iconPathColor(marker.status)
+    // console.log("marker is", marker)
+    return marker
+  },
+
+  iconPathColor(status) {
+    if (status=== "healthy") {
+      return '/testpins/Talon-blue-pin.png'}
+    else if (status === "critical") {
+      return '/testpins/Talon-red-pin.png'
+    } else {
+      return '/testpins/Talon-orange-pin.png'
+    }
+  },
+
   onLoad: function (user) {
     let page = this
     page.ctx = wx.createCameraContext()
     page.setData({user})
+
+    var that = this;
+    wx.getLocation({
+      type: "wgs84",
+      success: function (res) {
+        var latitude = res.latitude;
+        var longitude = res.longitude;
+        console.log("当前位置的经纬度为：", res.latitude, res.longitude);
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude,
+        })
+      }
+    })
   },
 
   onReady: function () {
