@@ -128,7 +128,7 @@ Page({
     // console.log(userInfo)
     this.setData({
       // lingyuanName: name,
-      talonUserInfo,
+      talonUserInfo: userInfo,
       showDialog: !this.data.showDialog,
     })
   },
