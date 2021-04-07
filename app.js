@@ -27,8 +27,9 @@ App({
             code: res.code
           },
           success: (res) => {
-            console.log(res)
+            // console.log(res)
             this.globalData.userId = res.data.userId
+            console.log("login successful, user ID is:", this.globalData.userId)
           }
         // insert next code here
         })

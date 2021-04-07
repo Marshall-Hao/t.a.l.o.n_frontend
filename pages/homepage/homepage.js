@@ -104,7 +104,7 @@ Page({
   },
 
   bindregionchange(e) {
-    console.log('=bindregiοnchange=', e)
+    // console.log('=bindregiοnchange=', e)
   },
 
   bindtapMap(e) {
