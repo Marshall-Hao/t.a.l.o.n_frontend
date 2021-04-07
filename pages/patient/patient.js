@@ -11,6 +11,24 @@ Page({
       currentUser: {}
   },
 
+  updateCurrentUser(currentUser) {
+    let page = this
+    let id = page.data.currentUser.id
+    console.log(id)
+    let base = app.globalData.baseUrl
+    let data = page.data.currentUser
+    console.log(data)
+    wx.request({
+      url: `${base}/users/${id}`,
+      method: 'PUT',
+      data,
+      success(res){
+        console.log(res)
+        page.setData({currentUser: data})
+      }
+    })
+  },
+
   audioPlay: function (e) {
     let page = this 
     let alarm = page.data.alarm = true;
@@ -40,39 +58,33 @@ Page({
     console.log(e.detail)
   },
 
-  updateCritical(e){
-    console.log(e)
+  updateCritical(){
     let page = this
     let status = page.data.currentUser.status = 'non-critical'
-    let id = e.currentTarget.dataset.id.id
-    let base = app.globalData.baseUrl
+    let currentUser = page.data.currentUser
     page.setData({status})
-    let data = e.currentTarget.dataset.id
-    wx.request({
-      url: `${base}/users/${id}`,
-      method: 'PUT',
-      data, 
-      success(res){
-        console.log(res)
-      }
-    })
+    console.log('Current user', page.data.currentUser.status)
+    return page.updateCurrentUser(currentUser)
   },
 
   updateNonCritical() {
     let page = this
     let status = page.data.currentUser.status = 'critical'
+    let currentUser = page.data.currentUser
     page.setData({status})
-    console.log(page.data.currentUser.status)
+    console.log('Current user', page.data.currentUser.status)
+    return page.updateCurrentUser(currentUser)
   },
 
   onLoad: function (user) {
-    this.ctx = wx.createCameraContext()
-    this.setData({user})
+    let page = this
+    page.ctx = wx.createCameraContext()
+    page.setData({user})
   },
 
   onReady: function () {
     this.audioCtx = wx.createAudioContext('myAudio')
-  }, 
+  },
 
   onShow: function () {
     let page = this
