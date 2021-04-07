@@ -33,6 +33,12 @@
         {
           "name": "homepage",
           "pathName": "pages/homepage/homepage",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "landing mode",
+          "pathName": "pages/landing/landing",
           "scene": null
         }
       ]

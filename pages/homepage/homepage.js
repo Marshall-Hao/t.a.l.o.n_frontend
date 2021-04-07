@@ -7,10 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo: {},
+    hasUserInfo: false,
+    canIUseGetUserProfile: false,
     showDialog: false,
     longitude: 113.14278, //地图界面中心的经度
     latitude: 23.02882, //地图界面中心的纬度
-    userInfo: {
+    talonUserInfo: {
       name: '',
       status: ''
     },
@@ -75,7 +78,7 @@ Page({
   },
 
   userToMarker(user) {
-    console.log(user)
+    // console.log(user)
     let marker = {
       id: user.id,
       name: user.wechat_account,
@@ -86,7 +89,7 @@ Page({
       height: 28
     }
     marker.iconPath = this.iconPathColor(marker.status)
-    console.log("marker is", marker)
+    // console.log("marker is", marker)
     return marker
   },
 
@@ -119,19 +122,43 @@ Page({
     console.log('id:', id)
     // var name = this.data.markers[id - 1].name
     // console.log("name:", name)
-    let userInfo = this.data.userInfo
+    let userInfo = this.data.talonUserInfo
     userInfo.name = this.data.markers[id - 1].name
     userInfo.status = this.data.markers[id - 1].status
-    console.log(userInfo)
+    // console.log(userInfo)
     this.setData({
       // lingyuanName: name,
-      userInfo,
+      talonUserInfo,
       showDialog: !this.data.showDialog,
     })
   },
-
+  getUserProfile(e) {
+    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+    wx.getUserProfile({
+      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    })
+  },
+  getUserInfo(e) {
+    // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
+  },
 
   onLoad: function (options) {
+    if (wx.getUserProfile) {
+      this.setData({
+        canIUseGetUserProfile: true
+      })
+    }
 
     var that = this;
     wx.getLocation({
@@ -166,10 +193,10 @@ Page({
     wx.request({
       url: `${base}/users`,
       success(res) {
-        console.log("res", res)
+        // console.log("res", res)
         let users = res.data.users
         let markers = users.map((user) => {
-          console.log("user is", user)
+          // console.log("user is", user)
           return page.userToMarker(user)
         })
         console.log(markers)
