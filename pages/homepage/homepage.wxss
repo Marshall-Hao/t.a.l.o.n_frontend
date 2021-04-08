@@ -1,4 +1,8 @@
-page {height: 100%;margin: 0;padding: 0;}
+page {
+    background-color: #CEEEEE;
+    height: 100%;margin: 0;padding: 0;
+}
+
 /* 弹窗 */
 .pop-up__mask {position: fixed;top: 0; left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0); background: rgba(0, 0, 0, 0.4);display: none;z-index: 1001}
 .pop-up-container {position: fixed; bottom: 0;width: 100%;left: 0;right: 0;overflow: hidden;border-top-left-radius: 40rpx;
@@ -20,18 +24,17 @@ page {height: 100%;margin: 0;padding: 0;}
 .viewlittle image{width: 50rpx;height: 50rpx;vertical-align: bottom;}
 .btn-SOS{
     margin-top: 25rpx;
-    border-radius: 3px;
+    border-radius: 3rpx;
     background: linear-gradient(
-        99.29deg
+        100deg
         , #FF4036 -1.59%, #970202 103.57%);
-            box-shadow: 5px 6px 11px 2px rgb(0 0 0 / 40%), inset -3px -3px 13px -1px rgb(0 0 0 / 75%), inset 10px 10px 21px 3px rgb(204 127 127 / 50%);
+            box-shadow: 5rpx 6rpx 11rpx 2rpx rgb(0 0 0 / 40%), inset -3rpx -3rpx 13rpx -1rpx rgb(0 0 0 / 75%), inset 10rpx 10rpx 21rpx 3rpx rgb(204 127 127 / 50%);
     color: #FEFEFE;
 }
-.logo {
-    margin-top: 20px;
-    margin-bottom: 30px;
-    background-attachment: "../../Image/Talon-logo.png";
-    height: 100px;
+.logo-container {
+    margin-top: 20rpx;
+    margin-bottom: 30rpx;
+    height: 135px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -183,4 +186,14 @@ page {height: 100%;margin: 0;padding: 0;}
   to {
     opacity: 1;
   }
+  
+.sign-in-btn {
+    margin-top: 30rpx;
+    background: #7BB32E;
+    box-shadow: 4rpx 4rpx 10rpx 4rpx rgba(0, 0, 0, 0.4), inset 2rpx 3rpx 4rpx rgba(167, 213, 105, 0.93), inset -3rpx -3rpx 6rpx rgba(0, 0, 0, 0.3);
+    border-radius: 3rpx;
+}
+
+.wx-sign-in-btn{
+    margin-top: 30rpx;
 }

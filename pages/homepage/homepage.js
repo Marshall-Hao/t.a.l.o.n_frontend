@@ -26,7 +26,7 @@ Page({
     let page = this
     let id = app.globalData.userId;
     let base = app.globalData.baseUrl
-    console.log("callback:!", callback)
+    // console.log("callback:!", callback)
     wx.request({
       url: `${base}/users/${id}`,
       method: 'PUT',
@@ -142,6 +142,16 @@ Page({
       hasUserInfo: true
     })
   },
+  setHasUserInfo(){
+    // console.log('setting from storage')
+    wx.getStorage({
+      key: 'hasUserInfo',
+      success: (res) => {
+        console.log("Storage get",res)
+        this.setData({hasUserInfo: res.data})
+      }
+    })
+  },
 
 setHasUserInfo(){
   wx.getStorage({
@@ -158,6 +168,9 @@ setHasUserInfo(){
       this.setData({
         canIUseGetUserProfile: true
       })
+    // console.log("onLoad function");
+    
+      
     }
 
     var that = this;

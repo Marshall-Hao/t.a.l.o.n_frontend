@@ -1,23 +1,36 @@
 <view class="" hover-class="none" hover-stop-propagation="false" style="width: 100%; height: 50%">
+  <map id="map" longitude="{{longitude}}" latitude=" {{latitude}}" markers="{{markers}}" scale="14" show-location
+    style="width: 100%; height: 100%;" bindmarkertap="markertap" bindregionchange="bindregionchange" bindtap="bindtapMap">
+  </map>
 
-<map id="map" longitude="{{longitude}}" latitude=" {{latitude}}" markers="{{markers}}" scale="14" show-location
-  style="width: 100%; height: 100%;" bindmarkertap="markertap" bindregionchange="bindregionchange" bindtap="bindtapMap">
-</map>
+  <view class="patient-flexbox">
+    <audio  style="display: none" src="{{src}}" id="myAudio" controls loop></audio>
+    <view wx:if="{{alarm === false}}">
+      <!-- <image class="bell" bindtap="audioPlay" id="myAudio"style="background-image: url('https://i.fbcd.co/products/resized/resized-750-500/903ac15317c4132beafa9480e780aa9ddcb91d2a6f64e3a198baf9f4232eedab.jpg')"></image> -->
+      <image src="/pages/files/icons/bell.png" class="bell" bindtap="audioPlay" id="myAudio"></image>
+    </view>
+    <view wx:else>
+      <!-- <image class="bell" bindtap="audioPause" id="myAudio" style="background-image: url('https://i.fbcd.co/products/resized/resized-750-500/903ac15317c4132beafa9480e780aa9ddcb91d2a6f64e3a198baf9f4232eedab.jpg')"></image> -->
+      <image src="/pages/files/icons/bell.png" class="bell" bindtap="audioPause" id="myAudio"></image>
 
-<view class="patient-flexbox">
-  <audio  style="display: none" src="{{src}}" id="myAudio" controls loop></audio>
-  <view wx:if="{{alarm === false}}">
-    <image class="bell" bindtap="audioPlay" id="myAudio"style="background-image: url('https://i.fbcd.co/products/resized/resized-750-500/903ac15317c4132beafa9480e780aa9ddcb91d2a6f64e3a198baf9f4232eedab.jpg')"></image>
+    </view>
+    <!-- <view bindtap="takePhoto" class='camera' style="background-image: url('https://img.icons8.com/carbon-copy/2x/camera--v2.png')"></view> -->
+    <view bindtap="takePhoto" class='' >
+      <image class="camera" src="/pages/files/icons/camera.png"></image>
+    </view>
+  </view>
+
+  <view class="" wx:if="{{currentUser.status === 'critical'}}">
+    <button data-id="{{currentUser}}" style="" bindtap="updateCritical" class="status-btn non-crit">Not in critical condition</button>
   </view>
   <view wx:else>
-    <image class="bell" bindtap="audioPause" id="myAudio" style="background-image: url('https://i.fbcd.co/products/resized/resized-750-500/903ac15317c4132beafa9480e780aa9ddcb91d2a6f64e3a198baf9f4232eedab.jpg')"></image>
+    <button class="btn-status" data-id="{{currentUser}}"style="" bindtap="updateNonCritical" class="status-btn crit">In critical condition</button>
   </view>
-  <view bindtap="takePhoto" class='camera' style="background-image: url('https://img.icons8.com/carbon-copy/2x/camera--v2.png')"></view>
+
+  <view class="logo-container">
+    <image src="/pages/files/icons/Talon-logo.png" alt=""></image>
+  </view>
 </view>
-<view class="btn-status" wx:if="{{currentUser.status === 'critical'}}">
-  <button data-id="{{currentUser}}"style="color: red" bindtap="updateCritical">I am not in critical condition</button>
-</view>
-<view wx:else>
-  <button class="btn-status" data-id="{{currentUser}}"style="background-color: orange" bindtap="updateNonCritical">I am in critical condition</button>
-</view>
-</view>
+
+
+
