@@ -45,6 +45,12 @@
         {
           "name": "Patient",
           "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "poster",
+          "pathName": "pages/poster/poster",
           "scene": null
         }
       ]

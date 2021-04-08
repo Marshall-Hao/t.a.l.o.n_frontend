@@ -2,16 +2,17 @@
   "pages":[
     "pages/index/index",
     "pages/homepage/homepage",
-    "pages/patient/patient"
+    "pages/patient/patient",
+    "pages/poster/poster"
   ],
 
   "requiredBackgroundModes": ["audio"],
 
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "T.A.L.O.N - Emergency Map",
+    "navigationBarTextStyle":"white"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

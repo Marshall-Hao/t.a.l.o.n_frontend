@@ -7,10 +7,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    loaded: false,
     userInfo: {},
     hasUserInfo: false,
     canIUseGetUserProfile: false,
     showDialog: false,
+    
     longitude: 0, //地图界面中心的经度
     latitude: 0, //地图界面中心的纬度
     talonUserInfo: {
@@ -60,7 +62,7 @@ Page({
       latitude: user.location.latitude,
       longitude: user.location.longitude,
       width: 24,
-      height: 28
+      height: 36
     }
     marker.iconPath = this.iconPathColor(marker.status)
     // console.log("marker is", marker)
@@ -141,7 +143,17 @@ Page({
     })
   },
 
+setHasUserInfo(){
+  wx.getStorage({
+    key: 'hasUserInfo',
+    success: (res) => {
+      this.setData({hasUserInfo: res.data})
+    }
+  })
+},
+
   onLoad: function (options) {
+
     if (wx.getUserProfile) {
       this.setData({
         canIUseGetUserProfile: true
@@ -159,16 +171,23 @@ Page({
         that.setData({
           latitude: res.latitude,
           longitude: res.longitude,
-
         })
+        if (longitude !== 0) setTimeout(that.showPosterPage, 2600);
       }
-    })
+    })     
   },
+
+showPosterPage() {
+  this.setData({
+    loaded: true
+  })
+},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+  
 
   },
 
@@ -179,6 +198,7 @@ Page({
     let page = this;
     let base = app.globalData.baseUrl;
     let markers = page.data.markers
+    this.setHasUserInfo()
     wx.request({
       url: `${base}/users`,
       success(res) {
@@ -194,8 +214,10 @@ Page({
         })
         // page.data.markers.push(res.data.users)
         // console.log(markers)
+        
       }
     })
+   
   },
 
   /**
