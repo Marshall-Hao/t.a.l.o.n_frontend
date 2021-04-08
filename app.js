@@ -1,25 +1,12 @@
 // app.js
 App({
-  // onLaunch() {
-  //   // 展示本地存储能力
-  //   const logs = wx.getStorageSync('logs') || []
-  //   logs.unshift(Date.now())
-  //   wx.setStorageSync('logs', logs)
 
-  //   // 登录
-  //   wx.login({
-  //     success: res => {
-  //       // 发送 res.code 到后台换取 openId, sessionKey, unionId
-  //     }
-  //   })
-  // },
-  onLaunch: function () {
+  login: function () {
     const host = this.globalData.baseUrl
-    // console.log('host is :', host)
     // console.log('beginning login')
     wx.login({
       success: (res) => {
-        console.log(res)
+        // console.log(res)
         wx.request({
           url: host + '/login',
           method: 'post',
@@ -27,18 +14,32 @@ App({
             code: res.code
           },
           success: (res) => {
-            // console.log(res)
+            console.log(res)
             this.globalData.userId = res.data.userId
-            // console.log("login successful, user ID is:", this.globalData.userId)
+            console.log("login successful, user ID is:", this.globalData)
+
+            wx.setStorageSync('hasUserInfo', res.data.hasUserInfo)
+            wx.setStorageSync('currentUser', res.data.currentUser)
           }
-        // insert next code here
         })
       }
     })
+
+  },
+  onLaunch: function () {
+    // checking if the user is in Storage
+    let user = wx.getStorageSync('currentUser')
+    if (user) {
+      console.log('user is in the storage')
+      this.globalData.userId = user.id
+    } else {
+      this.login()
+    }
+
   },
   globalData: {
     // userInfo: null,
     baseUrl: 'http://localhost:3000/api/v1'
     //baseUrl: 'https://t-a-l-o-n.herokuapp.com/api/v1'
-  }
+  },
 })
