@@ -1,4 +1,3 @@
-// app.js
 App({
 
   login: function () {
@@ -36,6 +35,16 @@ App({
       this.login()
     }
 
+  },
+  onLaunch: function () {
+    // checking if the user is in Storage
+    let user = wx.getStorageSync('currentUser')
+    if (user) {
+      console.log('user is in the storage')
+      this.globalData.userId = user.id
+    } else {
+      this.login()
+    }
   },
   globalData: {
     // userInfo: null,

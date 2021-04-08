@@ -40,6 +40,153 @@ page {
     align-items: center;
 }
 
+.poster-page {
+    display: flex;
+    /* background: white;   */
+    align-items: center;
+}
+
+.banner {
+    display: flex;
+    /* background: white; */
+    width: 100%;
+    justify-content: center;
+    padding: 20rpx 0rpx 20rpx 0rpx;
+    margin-bottom: 200rpx;
+}
+
+.poster-page-logo{
+    height: 100rpx;
+    width: 100rpx;
+    /* box-shadow: 1px 1px 200px white; */
+    background: rgba(5,9,16,0.1);
+    /* background: black; */
+
+}
+
+.poster-page-icon{
+    height: 400rpx;
+    width: 400rpx;
+
+    /* box-shadow: 4px 4px 20px white; */
+}
+
+/* The magic here that makes animations wait */ 
+.js-loading ,
+.js-loading :before,
+.js-loading :after {
+  animation-play-state: paused !important;
+}
+
+.animated-header {
+  background: #000;
+  position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  overflow: hidden;
+  display: flex;
+}
+
+.loading-map {
+    margin-top: 800rpx;
+    color: white;
+}
+
+.animated-header:before {
+  animation: show-background 60s .5s cubic-bezier(0,1,.5,1) forwards;
+  background: url(https://cssanimation.rocks/images/random/space2.jpg) repeat center;
+  /* background: url('/pages/files/helping.jpg'); */
+  /* background: url('/pages/files/helping.jpg'); */
+  content: "";
+  opacity: 0;
+  height: 125vh;
+  position: absolute;
+  left: -10%;
+  top: -10%;
+  width: 125vw;
+}
+
+
+.js-loading .loading {
+  display: block;
+}
+
+.earth {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+    top: calc(45% - 100px);
+    left: calc(50% - 100px);
+    
+}
+
+
+
+.moon {
+  animation: spin 12s linear infinite;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+    top: calc(50% - 200px);
+    left: calc(50% - 200px);
+  transform-origin: 200px 200px;
+  color: white;
+}
+
+.loading-map {
+    color: white;
+}
+
+.earth img, .moon img {
+  animation: show-on-load 1s .5s cubic-bezier(0,1.6,.6,1) forwards;
+  border-radius: 50%;
+  opacity: 0;
+  width: 100%;
+  box-shadow: 0 0 12em 1em rgba(110, 140, 200, .6);
+}
+
+.moon img {
+  animation: fade-in 2s 1s cubic-bezier(0,1.5,1,1) forwards, spin 30s linear reverse infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes show-background {
+  0% {
+    opacity: 0.1;
+    transform: none;
+  }
+  30% {
+    opacity: .5;
+  }
+  100% {
+    opacity: .8;
+    transform: scale(.8)
+  }
+}
+
+@keyframes show-on-load {
+  0% {
+    opacity: 0;
+    transform: scale(.5);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
+  
 .sign-in-btn {
     margin-top: 30rpx;
     background: #7BB32E;

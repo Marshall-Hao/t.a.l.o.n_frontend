@@ -1,51 +1,81 @@
+<view wx:if="{{!loaded}}" class="animated-header">
+  <view class="loading">Waiting for "load" event...</view>
+  <view class="earth">
+
+    <image class="poster-page-icon" src="../files/talon-icon-blue.png" alt=""></image>
+    <!-- <image class="poster-page-logo" src="../files/Talon-logo.png" alt=""></image> -->
+    <!-- <text class="loading-map">
+    Loading Emergency Map
+    </text> -->
+  </view>
+  <view class="moon">
+    <!-- <image class="poster-page-logo" src="../files/Talon-logo.png" alt=""></image> -->
+    <!-- <image class="poster-page-icon" src="../files/talon-icon-blue.png" alt=""></image> -->
+    <image class="poster-page-logo" src="../files/help.png" alt=""></image>
+
+    <!-- <text class="loading-map">
+      Loading
+    </text> -->
+  </view>
+
+</view>
+
+
+
+<view wx:if="{{!loaded}}" class="poster-page" style="width: 100%; height: 100%;">
+  <view class="banner">
+    <!-- <image class="poster-page-icon" src="../files/talon-icon-blue.png" alt=""></image> -->
+    <image class="poster-page-logo" src="../files/Talon-logo.png" alt=""></image>
+  </view>
+</view>
 <view class="" hover-class="none" hover-stop-propagation="false" style="width: 100%; height: 90%;">
 
-<map id="map" longitude="{{longitude}}" latitude=" {{latitude}}" markers="{{markers}}" scale="14" show-location
-  style="width: 100%; height: 95%;" bindmarkertap="markertap" bindregionchange="bindregionchange" bindtap="bindtapMap">
+  <map id="map" longitude="{{longitude}}" latitude=" {{latitude}}" markers="{{markers}}" scale="14" show-location
+    style="width: 100%; height: 100%;" bindmarkertap="markertap" bindregionchange="bindregionchange"
+    bindtap="bindtapMap">
     <!-- 弹窗 -->
-  <view class="pop-up {{ showDialog ? 'pop-up--show' : '' }}" >
-    <view class="pop-up__mask" />
+    <view class="pop-up {{ showDialog ? 'pop-up--show' : '' }}">
+      <view class="pop-up__mask" />
       <!-- 内容 -->
       <view class="pop-up-container">
 
-          <view class="content">
-              <image class="pop-up-img" src="{{userInfo.avatarUrl}}"></image>
-              <view class="cards">
-                  <view class="user-info">{{userInfo.nickName}}</view>
-                  
-                  <view class="status">{{talonUserInfo.status}}</view>
-                  <view class="description">
-                      <view class="details">SOS</view>
-                      <view class="need-help">
-                          <icon class="iconfontlsda iconlocate-02"></icon>
-                          <text>50km (api no.?)</text>
-                      </view>
-                  </view>
+        <view class="content">
+          <image class="pop-up-img" src="{{userInfo.avatarUrl}}"></image>
+          <view class="cards">
+            <view class="user-info">{{userInfo.nickName}}</view>
+
+            <view class="status">{{talonUserInfo.status}}</view>
+            <view class="description">
+              <view class="details">SOS</view>
+              <view class="need-help">
+                <icon class="iconfontlsda iconlocate-02"></icon>
+                <text>50km (api no.?)</text>
               </view>
+            </view>
           </view>
-          
+        </view>
+
       </view>
+    </view>
+
+
+  </map>
+
+  <view class="userinfo">
+    <block wx:if="{{!hasUserInfo}}">
+      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> Sign in</button>
+      <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> Sign innn</button>
+    </block>
+    <!-- <block wx:else>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block> -->
+
   </view>
 
-  
-</map>
+  <button wx:if="{{hasUserInfo}}" bindtap="goToPatient" data-id="{{userInfo.id}}" class="btn-SOS">S.O.S</button>
 
-<view class="userinfo">
-  <block wx:if="{{!hasUserInfo}}">
-    <!-- <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile" class="sign-in-btn"> Sign in</button> -->
-    <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile" type="primary" class="wx-sign-in-btn"> Sign in</button>
-    <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> Sign innn</button>
-  </block>
-  <!-- <block wx:else>
-    <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </block> -->
-</view>
-
-<button wx:if="{{hasUserInfo}}" bindtap="goToPatient" data-id="{{userInfo.id}}" class="btn-SOS">S.O.S</button>
-
-  <view class="logo-container">
-    <image src="/pages/files/icons/Talon-logo.png" alt=""></image>
+  <view class="logo">
+    <!-- <image src="/Image/Talon-logo.png" alt=""></image> -->
   </view>
 </view>
-

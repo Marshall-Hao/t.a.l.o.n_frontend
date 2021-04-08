@@ -78,15 +78,32 @@ Page({
     page.audioCtx.pause()
   },
   takePhoto() {
+    let page = this
+    let id = page.data.currentUser.id
+    let baseurl = app.globalData.baseUrl
+    // console.log(baseurl)
     wx.chooseImage({
       count: 1,
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success (res) {
-        console.log(res)
-        const tempFilePaths = res.tempFilePaths
+        // console.log('chooseImage',res)
+        const tempFilePaths = res.tempFilePaths[0]
+        wx.uploadFile({
+          url: `${baseurl}/users/${id}/update_photo`, //仅为示例，非真实的接口地址
+          filePath: tempFilePaths,
+          name: 'photo',
+          formData: {
+            'user': 'test'
+          },
+          success (res){
+            const data = res.data
+            console.log(data)
+            //do something
+          }
+        })
       }
-    })      
+    })
   },
   error(e) {
     console.log(e.detail)
