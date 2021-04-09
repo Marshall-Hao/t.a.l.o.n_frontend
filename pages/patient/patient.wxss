@@ -63,7 +63,7 @@ page {
 
 
 .status-btn {
-  width: 350rpx;
+  width: 400rpx;
   height: 125rpx;
   margin: 70rpx 60rpx;
   margin-bottom: 10rpx;

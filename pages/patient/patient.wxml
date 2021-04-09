@@ -21,10 +21,10 @@
   </view>
 
   <view class="" wx:if="{{currentUser.status === 'critical'}}">
-    <button data-id="{{currentUser}}" style="" bindtap="updateCritical" class="status-btn non-crit">Not in critical condition</button>
+    <button data-id="{{currentUser}}" style="" bindtap="updateCritical" class="status-btn non-crit">Don't require immediate help</button>
   </view>
   <view wx:else>
-    <button class="btn-status" data-id="{{currentUser}}"style="" bindtap="updateNonCritical" class="status-btn crit">In critical condition</button>
+    <button class="btn-status" data-id="{{currentUser}}"style="" bindtap="updateNonCritical" class="status-btn crit">Require immediate help</button>
   </view>
 
   <view class="logo-container">
