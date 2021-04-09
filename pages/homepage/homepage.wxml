@@ -42,7 +42,7 @@
         <view class="content">
           <image class="pop-up-img" src="{{talonUserInfo.imgUrl}}"></image>
           <view class="cards">
-            <view class="user-info">{{userInfo.nickName}}</view>
+            <view class="user-info">{{talonUserInfo.name}}</view>
 
             <view class="status">Condition: {{talonUserInfo.status}}</view>
             <view class="description">
