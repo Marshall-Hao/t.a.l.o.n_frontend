@@ -111,12 +111,14 @@ Page({
       id: user.id,
       name: user.wechat_account,
       status: user.status,
-      latitude: user.location.latitude,
-      longitude: user.location.longitude,
       width: 24,
       height: 28
     }
     marker.iconPath = this.iconPathColor(marker.status)
+    if (user.location) {
+      marker.latitude = user.location.latitude
+      marker.longitude = user.location.longitude
+    }
     console.log("patient marker is", marker)
     return marker
   },
@@ -205,6 +207,7 @@ Page({
           // console.log("user is", user)
           return page.userToMarker(user)
         })
+        markers = markers.filter(marker => marker.hasOwnProperty("latitude"))
         // console.log(markers)
         page.setData({
           markers
