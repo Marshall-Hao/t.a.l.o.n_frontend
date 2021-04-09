@@ -17,7 +17,8 @@ Page({
     latitude: 0, //地图界面中心的纬度
     talonUserInfo: {
       name: '',
-      status: ''
+      status: '',
+      imgUrl: ''
     },
     markers: []
   },
@@ -61,6 +62,7 @@ Page({
       status: user.status,
       latitude: user.location.latitude,
       longitude: user.location.longitude,
+      imgUrl: user.url,
       width: 24,
       height: 36
     }
@@ -105,6 +107,7 @@ Page({
     })
     talonUserInfo.name = marker.name
     talonUserInfo.status = marker.status
+    talonUserInfo.imgUrl = marker.imgUrl
     // console.log(userInfo)
     this.setData({
       talonUserInfo,
