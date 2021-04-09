@@ -13,44 +13,16 @@
     "miniprogram": {
       "list": [
         {
-          "name": "test",
-          "pathName": "pages/test/test",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "test2",
-          "pathName": "pages/test2/test2",
-          "query": "",
-          "scene": null
-        },
-        {
           "name": "homepage",
           "pathName": "pages/homepage/homepage",
           "query": "",
           "scene": null
         },
+        null,
         {
-          "name": "homepage",
-          "pathName": "pages/homepage/homepage",
+          "name": "patient",
+          "pathName": "pages/patient/patient",
           "query": "",
-          "scene": null
-        },
-        {
-          "name": "landing mode",
-          "pathName": "pages/landing/landing",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "Patient",
-          "pathName": "pages/index/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "poster",
-          "pathName": "pages/poster/poster",
           "scene": null
         }
       ]

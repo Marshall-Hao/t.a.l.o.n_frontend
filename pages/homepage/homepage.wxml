@@ -40,7 +40,7 @@
       <view class="pop-up-container">
 
         <view class="content">
-          <image class="pop-up-img" src="{{userInfo.avatarUrl}}"></image>
+          <image class="pop-up-img" src="{{talonUserInfo.imgUrl}}"></image>
           <view class="cards">
             <view class="user-info">{{userInfo.nickName}}</view>
 

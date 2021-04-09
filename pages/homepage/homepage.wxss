@@ -4,7 +4,8 @@ page {
 }
 
 /* 弹窗 */
-.pop-up__mask {position: fixed;top: 0; left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0); background: rgba(0, 0, 0, 0.4);display: none;z-index: 1001}
+.pop-up__mask 
+{position: fixed;top: 0; left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0); background: rgba(0, 0, 0, 0.4);display: none;z-index: 1001}
 .pop-up-container {position: fixed; bottom: 0;width: 100%;left: 0;right: 0;overflow: hidden;border-top-left-radius: 40rpx;
     box-shadow: darkgrey 0rpx 5rpx 15rpx 8rpx;z-index: 1003;
     background: #f8f8f8; margin: 0 auto;transform: translateY(300%);transition: all 0.4s ease;border-top-right-radius: 30rpx;}
