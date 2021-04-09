@@ -20,7 +20,7 @@ Page({
           latitude: 22.524689,
           longitude: 113.937271,
           width: 24,
-          height: 28
+          height: 48 //keep to the ratio 2:1
         },
         //位置2
         {
@@ -33,7 +33,7 @@ Page({
           latitude: 22.522807,
           longitude: 113.935338,
           width: 24,
-          height: 28
+          height: 48 //keep to the ratio 2:1
         },
         //位置3
         {
@@ -44,7 +44,7 @@ Page({
           latitude: 22.53535,
           longitude: 113.920322,
           width: 24,
-          height: 28
+          height: 48 //keep to the ratio 2:1
         },
       ]
   },

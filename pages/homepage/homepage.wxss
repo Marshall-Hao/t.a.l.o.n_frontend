@@ -24,14 +24,20 @@ page {
 .viewlittle{width: 60rpx;height: 60rpx;overflow: hidden;background-color: #fff;position: fixed;bottom: 50rpx;right: 20rpx;display: flex;justify-content: center;align-items: center;border-radius: 8rpx;z-index: 1002}
 .viewlittle image{width: 50rpx;height: 50rpx;vertical-align: bottom;}
 .btn-SOS{
-    margin-top: 25rpx;
-    border-radius: 3rpx;
+    /* margin-top: 25rpx; */
+    /* border-radius: 3rpx;
     background: linear-gradient(
         100deg
         , #FF4036 -1.59%, #970202 103.57%);
-            box-shadow: 5rpx 6rpx 11rpx 2rpx rgb(0 0 0 / 40%), inset -3rpx -3rpx 13rpx -1rpx rgb(0 0 0 / 75%), inset 10rpx 10rpx 21rpx 3rpx rgb(204 127 127 / 50%);
+            box-shadow: 5rpx 6rpx 11rpx 2rpx rgb(0 0 0 / 40%), inset -3rpx -3rpx 13rpx -1rpx rgb(0 0 0 / 75%), inset 10rpx 10rpx 21rpx 3rpx rgb(204 127 127 / 50%); */
     color: #FEFEFE;
+    background-color: red;
 }
+
+.userinfo {
+  padding-top: 30rpx;
+}
+
 .logo-container {
     margin-top: 20rpx;
     margin-bottom: 30rpx;
