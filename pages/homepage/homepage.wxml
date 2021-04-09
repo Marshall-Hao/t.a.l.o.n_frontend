@@ -44,12 +44,12 @@
           <view class="cards">
             <view class="user-info">{{userInfo.nickName}}</view>
 
-            <view class="status">{{talonUserInfo.status}}</view>
+            <view class="status">Condition: {{talonUserInfo.status}}</view>
             <view class="description">
               <view class="details">SOS</view>
               <view class="need-help">
                 <icon class="iconfontlsda iconlocate-02"></icon>
-                <text>50km (api no.?)</text>
+                <text>35m</text>
               </view>
             </view>
           </view>
