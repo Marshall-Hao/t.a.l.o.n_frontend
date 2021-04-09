@@ -4,7 +4,7 @@ Page({
    * Page initial data
    */
   data: {
-      src: '../files/alarm.mp3',
+      src: 'https://project-lw.oss-cn-shenzhen.aliyuncs.com/bell_sound_effect.mp3?versionId=CAEQHBiBgMDWjt3UxRciIDdiZDBjM2Q1YzZiNDRiMGI5ZWZmNTM2MmI1YTYxNDFl',
       alarm: false,
       user: {},
       currentUser: {},
@@ -99,6 +99,11 @@ Page({
           success (res){
             const data = res.data
             console.log(data)
+            wx.showToast({
+              title: 'Got Ya',
+              icon: 'success',
+              duration: 2000
+            })
             //do something
           }
         })
