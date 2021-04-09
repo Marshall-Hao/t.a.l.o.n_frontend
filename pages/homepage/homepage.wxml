@@ -60,10 +60,11 @@
 
 
   </map>
+  <button class="btn-SOS">Fk this shit</button>
 
   <view class="userinfo">
     <block wx:if="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> Sign in</button>
+      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile" type="primary"> Sign in</button>
       <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> Sign innn</button>
     </block>
     <!-- <block wx:else>
@@ -74,7 +75,6 @@
   </view>
 
   <button wx:if="{{hasUserInfo}}" bindtap="goToPatient" data-id="{{userInfo.id}}" class="btn-SOS">S.O.S</button>
-
   <view class="logo">
     <!-- <image src="/Image/Talon-logo.png" alt=""></image> -->
   </view>

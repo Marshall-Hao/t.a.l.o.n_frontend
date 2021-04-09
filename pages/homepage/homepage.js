@@ -62,7 +62,7 @@ Page({
       latitude: user.location.latitude,
       longitude: user.location.longitude,
       width: 24,
-      height: 36
+      height: 48 //keep to the ratio 2:1
     }
     marker.iconPath = this.iconPathColor(marker.status)
     // console.log("marker is", marker)

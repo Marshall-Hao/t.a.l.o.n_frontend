@@ -17,9 +17,11 @@ page {
   padding: 25rpx;
   /* margin: 70rpx 0rpx 0rpx 80rpx; */
   /* background-attachment: url(`https://www.flaticon.com/svg/vstatic/svg/1157/1157000.svg?token=exp=1617615975~hmac=a62547cca33e667d5e326becee40cfd9`); */
-  background-size: cover;
+  /* background-size: cover;
   background: radial-gradient(50% 50% at 50% 50%, #15706A 0%, #81B3B0 100%);
-  box-shadow: 5px 5px 6px 2px rgba(0, 0, 0, 0.4);
+  box-shadow: 5px 5px 6px 2px rgba(0, 0, 0, 0.4); */
+  border-radius: 10rpx;
+  background-color: #7bb32e;
 }
 .camera {
   /* background-attachment: url(‘https://www.creativefabrica.com/wp-content/uploads/2019/05/Camera-icon-by-Muhazdinata-580x386.jpg’); */
@@ -28,8 +30,10 @@ page {
   margin: 0rpx;
   /* background-size: cover; */
   padding: 12px 5.5px;
-    background: radial-gradient(50% 50% at 50% 50%, #15706A 0%, #81B3B0 100%);
-    box-shadow: 5px 5px 6px 2px rgba(0, 0, 0, 0.4);
+  /* background: radial-gradient(50% 50% at 50% 50%, #15706A 0%, #81B3B0 100%);
+  box-shadow: 5px 5px 6px 2px rgba(0, 0, 0, 0.4); */
+  border-radius: 10rpx;
+  background-color: #7bb32e;
 }
 .btn-status {
   margin-top: 70rpx;
@@ -57,23 +61,25 @@ page {
 .status-btn {
   width: 350rpx;
   height: 125rpx;
-  border-radius: 3rpx;
   margin: 70rpx 60rpx;
   margin-bottom: 10rpx;
+  border-radius: 10rpx;
 }
 
 .crit {
-
-  background: linear-gradient(
+  background-color: red;
+  /* background: linear-gradient(
       100deg
       , #FF4036 -1.59%, #970202 103.57%);
-      box-shadow: 4rpx 4rpx 10rpx 4rpx rgba(0, 0, 0, 0.4), inset -3rpx -3rpx 13rpx -1rpx rgb(0 0 0 / 75%), inset 10rpx 10rpx 21rpx 3rpx rgb(204 127 127 / 50%);
+      box-shadow: 4rpx 4rpx 10rpx 4rpx rgba(0, 0, 0, 0.4), inset -3rpx -3rpx 13rpx -1rpx rgb(0 0 0 / 75%), inset 10rpx 10rpx 21rpx 3rpx rgb(204 127 127 / 50%); */
   color: #FEFEFE;
 }
 
 .non-crit {
-  background: linear-gradient(94.88deg, #DE700A 15.88%, #B15805 76.39%);
-  box-shadow: 4rpx 4rpx 10rpx 4rpx rgba(0, 0, 0, 0.4), inset 3rpx 3rpx 5rpx #E89C55, inset -3rpx -3rpx 10rpx 1rpx rgba(0, 0, 0, 0.25);
+  /* background: linear-gradient(94.88deg, #DE700A 15.88%, #B15805 76.39%);
+  box-shadow: 4rpx 4rpx 10rpx 4rpx rgba(0, 0, 0, 0.4), inset 3rpx 3rpx 5rpx #E89C55, inset -3rpx -3rpx 10rpx 1rpx rgba(0, 0, 0, 0.25); */
+  background-color: orange;
+  color: black;
 }
 
 .logo-container {
