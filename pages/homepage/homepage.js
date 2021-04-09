@@ -47,6 +47,18 @@ Page({
     this.updateCurrentUser(data, callback)
   },
 
+  refreshLocation() {
+    let id = app.globalData.userId;
+    let data = {
+      location: {
+        latitude: this.data.latitude,
+        longitude: this.data.longitude
+      },
+    }
+    this.updateCurrentUser(data)
+    console.log("refreshed Location!")
+  },
+
   navigateToPatient(id) {
     wx.navigateTo({
       url: `/pages/patient/patient?id=${id}`,
@@ -163,16 +175,12 @@ setHasUserInfo(){
 },
 
   onLoad: function (options) {
-
     if (wx.getUserProfile) {
       this.setData({
         canIUseGetUserProfile: true
       })
-    // console.log("onLoad function");
-    
-      
+    // console.log("onLoad function"); 
     }
-
     var that = this;
     wx.getLocation({
       type: "wgs84",
@@ -186,8 +194,12 @@ setHasUserInfo(){
           longitude: res.longitude,
         })
         if (longitude !== 0) setTimeout(that.showPosterPage, 2600);
+        that.refreshLocation()   
+        setInterval(function(){
+          that.refreshLocation()
+      }, 2000)
       }
-    })     
+    })  
   },
 
 showPosterPage() {
