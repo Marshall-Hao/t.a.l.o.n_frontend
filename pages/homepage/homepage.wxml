@@ -60,7 +60,7 @@
 
 
   </map>
-  <button class="btn-SOS">Fk this shit</button>
+  <!-- <button class="btn-SOS">Fk this shit</button> -->
 
   <view class="userinfo">
     <block wx:if="{{!hasUserInfo}}">

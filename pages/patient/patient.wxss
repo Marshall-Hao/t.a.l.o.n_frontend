@@ -21,7 +21,8 @@ page {
   background: radial-gradient(50% 50% at 50% 50%, #15706A 0%, #81B3B0 100%);
   box-shadow: 5px 5px 6px 2px rgba(0, 0, 0, 0.4); */
   border-radius: 10rpx;
-  background-color: #7bb32e;
+  /* background-color: #7bb32e; */
+  background-color: #1aad19; 
 }
 .camera {
   /* background-attachment: url(‘https://www.creativefabrica.com/wp-content/uploads/2019/05/Camera-icon-by-Muhazdinata-580x386.jpg’); */
@@ -33,7 +34,10 @@ page {
   /* background: radial-gradient(50% 50% at 50% 50%, #15706A 0%, #81B3B0 100%);
   box-shadow: 5px 5px 6px 2px rgba(0, 0, 0, 0.4); */
   border-radius: 10rpx;
-  background-color: #7bb32e;
+  /* standard wechat green */
+  /* background-color: #7bb32e; */
+  /* primary btn color #1aad19 */
+  background-color: #1aad19; 
 }
 .btn-status {
   margin-top: 70rpx;
