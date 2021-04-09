@@ -1,9 +1,8 @@
-<view class="" hover-class="none" hover-stop-propagation="false" style="width: 100%; height: 50%">
+<view class="" hover-class="none" hover-stop-propagation="false" style="width: 100%; height: 78%">
   <map id="map" longitude="{{longitude}}" latitude=" {{latitude}}" markers="{{markers}}" scale="14" show-location
     style="width: 100%; height: 100%;" bindmarkertap="markertap" bindregionchange="bindregionchange" bindtap="bindtapMap">
-  </map>
-
-  <view class="patient-flexbox">
+    <view class="teal-bg">
+      <view class="patient-flexbox">
     <audio  style="display: none" src="{{src}}" id="myAudio" controls loop></audio>
     <view wx:if="{{alarm === false}}">
       <image src="/pages/files/icons/bell.png" class="bell" bindtap="audioPlay" id="myAudio"></image>
@@ -18,15 +17,20 @@
   </view>
 
   <view class="" wx:if="{{currentUser.status === 'critical'}}">
-    <button data-id="{{currentUser}}" style="" bindtap="updateCritical" class="status-btn non-crit">Not in critical condition</button>
+    <button data-id="{{currentUser}}" style="" bindtap="updateCritical" class="status-btn non-crit">Don't require immediate help</button>
   </view>
-  <view wx:else>
-    <button class="btn-status" data-id="{{currentUser}}"style="" bindtap="updateNonCritical" class="status-btn crit">In critical condition</button>
+  <view class="" wx:else>
+    <button class="btn-status" data-id="{{currentUser}}"style="" bindtap="updateNonCritical" class="status-btn crit">Require immediate help</button>
   </view>
 
   <view class="logo-container" bindtap="goToHomepage">
     <image src="/pages/files/icons/Talon-logo.png" alt=""></image>
   </view>
+    </view>
+
+  </map>
+
+
 </view>
 
 
