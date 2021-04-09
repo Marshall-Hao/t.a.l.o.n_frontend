@@ -64,6 +64,7 @@ Page({
       width: 24,
       height: 36
     }
+    console.log("MARKER", marker)
     marker.iconPath = this.iconPathColor(marker.status)
     // console.log("marker is", marker)
     return marker
@@ -217,6 +218,7 @@ showPosterPage() {
       success(res) {
         // console.log("res", res)
         let users = res.data.users
+        console.log("users",users)
         let markers = users.map((user) => {
           // console.log("user is", user)
           return page.userToMarker(user)

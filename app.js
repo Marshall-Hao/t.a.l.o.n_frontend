@@ -34,7 +34,6 @@ App({
     } else {
       this.login()
     }
-
   },
   onLaunch: function () {
     // checking if the user is in Storage
@@ -48,7 +47,7 @@ App({
   },
   globalData: {
     // userInfo: null,
-    baseUrl: 'http://localhost:3000/api/v1'
-    //baseUrl: 'https://t-a-l-o-n.herokuapp.com/api/v1'
+    // baseUrl: 'http://localhost:3000/api/v1'
+    baseUrl: 'https://t-a-l-o-n.herokuapp.com/api/v1'
   },
 })
