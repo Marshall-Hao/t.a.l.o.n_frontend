@@ -121,7 +121,13 @@ Page({
     })
     talonUserInfo.name = marker.name
     talonUserInfo.status = marker.status
-    talonUserInfo.imgUrl = marker.imgUrl
+    if (marker.imgUrl) {
+      talonUserInfo.imgUrl = marker.imgUrl
+    } else if (marker.status === "healthy") {
+      talonUserInfo.imgUrl = "../files/HereToHelp.jpeg"
+    } else {
+      talonUserInfo.imgUrl = "../files/sos.jpeg"
+    }
     // console.log(userInfo)
     this.setData({
       talonUserInfo,
