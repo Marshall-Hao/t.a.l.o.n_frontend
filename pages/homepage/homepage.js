@@ -72,14 +72,16 @@ Page({
       id: user.id,
       name: user.wechat_account,
       status: user.status,
-      latitude: user.location.latitude,
-      longitude: user.location.longitude,
       imgUrl: user.url,
       width: 24,
       height: 48 //keep to the ratio 2:1
     }
     console.log("MARKER", marker)
     marker.iconPath = this.iconPathColor(marker.status)
+    if (user.location) {
+      marker.latitude = user.location.latitude
+      marker.longitude = user.location.longitude
+    }
     // console.log("marker is", marker)
     return marker
   },
@@ -148,6 +150,14 @@ Page({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
+        let currentUser = wx.getStorage({
+          key: 'currentUser',
+        })
+        currentUser.wechat_account = wechatAccountNickname
+        currentUser.location = {
+          latitude,
+          longitude,
+        }
       }
     })
 },
@@ -235,9 +245,10 @@ showPosterPage() {
         let users = res.data.users
         console.log("users",users)
         let markers = users.map((user) => {
-          // console.log("user is", user)
+          console.log("user is", user)
           return page.userToMarker(user)
         })
+        markers = markers.filter(marker => marker.hasOwnProperty("latitude"))
         // console.log(markers)
         page.setData({
           markers
