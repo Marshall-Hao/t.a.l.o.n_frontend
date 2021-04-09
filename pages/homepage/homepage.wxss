@@ -186,6 +186,7 @@ page {
   to {
     opacity: 1;
   }
+}
   
 .sign-in-btn {
     margin-top: 30rpx;
