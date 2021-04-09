@@ -112,7 +112,7 @@ Page({
       name: user.wechat_account,
       status: user.status,
       width: 24,
-      height: 28
+      height: 48
     }
     marker.iconPath = this.iconPathColor(marker.status)
     if (user.location) {
