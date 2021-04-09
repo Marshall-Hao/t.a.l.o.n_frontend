@@ -8,46 +8,22 @@ Page({
       alarm: false,
       user: {},
       currentUser: {},
-      longitude: 113.14278, //地图界面中心的经度
-      latitude: 23.02882, //地图界面中心的纬度
-      markers: [ //标志点的位置
-        //位置1
-        {
-          id: 1,
-          name: "Desmond",
-          iconPath: '/testpins/Talon-red-pin.png',
-          status: "critical",
-          latitude: 22.524689,
-          longitude: 113.937271,
-          width: 24,
-          height: 48 //keep to the ratio 2:1
-        },
-        //位置2
-        {
-          id: 2,
-          name: "Kevin",
-          role: 'medic',
-          status: "non-critical",
-          image: '',
-          iconPath: "/testpins/Talon-orange-pin.png",
-          latitude: 22.522807,
-          longitude: 113.935338,
-          width: 24,
-          height: 48 //keep to the ratio 2:1
-        },
-        //位置3
-        {
-          id: 3,
-          name: "Marshall",
-          status: "healthy",
-          iconPath: '/testpins/Talon-blue-pin.png',
-          latitude: 22.53535,
-          longitude: 113.920322,
-          width: 24,
-          height: 48 //keep to the ratio 2:1
-        },
-      ]
+      longitude: 0, //地图界面中心的经度
+      latitude: 0, //地图界面中心的纬度
+      talonUserInfo: {
+        name: '',
+        status: '',
+        imgUrl: ''
+      },
+      markers: []
   },
+
+  goToHomepage() {
+    wx.navigateTo({
+      url: '/pages/homepage/homepage',
+    })
+  }, 
+
   updateCurrentUser(currentUser) {
     let page = this
     let id = page.data.currentUser.id
@@ -136,7 +112,7 @@ Page({
       height: 28
     }
     marker.iconPath = this.iconPathColor(marker.status)
-    // console.log("marker is", marker)
+    console.log("patient marker is", marker)
     return marker
   },
   iconPathColor(status) {
@@ -148,6 +124,37 @@ Page({
       return '/testpins/Talon-orange-pin.png'
     }
   },
+  bindregionchange(e) {
+    // console.log('=bindregiοnchange=', e)
+  },
+
+  bindtapMap(e) {
+    // console.log('=bindtapMap=', e),
+    this.setData({
+      showDialog: false,
+    })
+  },
+
+  markertap(e) {
+    // console.log("markertap:", e)
+    var id = e.detail.markerId
+    // console.log('id:', id)
+    // var name = this.data.markers[id - 1].name
+    // console.log("name:", name)
+    let talonUserInfo = this.data.talonUserInfo
+    let marker = this.data.markers.find((marker) => {
+      return marker.id === id
+    })
+    talonUserInfo.name = marker.name
+    talonUserInfo.status = marker.status
+    talonUserInfo.imgUrl = marker.imgUrl
+    // console.log(userInfo)
+    this.setData({
+      talonUserInfo,
+      showDialog: !this.data.showDialog,
+    })
+  },
+
   onLoad: function (user) {
     let page = this
     page.ctx = wx.createCameraContext()
@@ -155,6 +162,7 @@ Page({
     var that = this;
     wx.getLocation({
       type: "wgs84",
+      isHighAccuracy: true,
       success: function (res) {
         var latitude = res.latitude;
         var longitude = res.longitude;
@@ -172,6 +180,7 @@ Page({
   onShow: function () {
     let page = this
     let base = app.globalData.baseUrl
+    let markers = page.data.markers
     let user = page.data.user
     wx.request({
       url: `${base}/users/${user.id}`,
@@ -179,6 +188,25 @@ Page({
         const currentUser = res.data;
         page.setData({currentUser})
         console.log(currentUser)
+      }
+    })
+    wx.request({
+      url: `${base}/users`,
+      success(res) {
+        // console.log("res", res)
+        let users = res.data.users
+        console.log("users",users)
+        let markers = users.map((user) => {
+          // console.log("user is", user)
+          return page.userToMarker(user)
+        })
+        // console.log(markers)
+        page.setData({
+          markers
+        })
+        // page.data.markers.push(res.data.users)
+        // console.log(markers)
+        
       }
     })
   }

@@ -6,15 +6,12 @@
   <view class="patient-flexbox">
     <audio  style="display: none" src="{{src}}" id="myAudio" controls loop></audio>
     <view wx:if="{{alarm === false}}">
-      <!-- <image class="bell" bindtap="audioPlay" id="myAudio"style="background-image: url('https://i.fbcd.co/products/resized/resized-750-500/903ac15317c4132beafa9480e780aa9ddcb91d2a6f64e3a198baf9f4232eedab.jpg')"></image> -->
       <image src="/pages/files/icons/bell.png" class="bell" bindtap="audioPlay" id="myAudio"></image>
     </view>
     <view wx:else>
-      <!-- <image class="bell" bindtap="audioPause" id="myAudio" style="background-image: url('https://i.fbcd.co/products/resized/resized-750-500/903ac15317c4132beafa9480e780aa9ddcb91d2a6f64e3a198baf9f4232eedab.jpg')"></image> -->
-      <image src="/pages/files/icons/bell.png" class="bell" bindtap="audioPause" id="myAudio"></image>
+      <image src="/pages/files/icons/bell.png" class="bell-pressed" bindtap="audioPause" id="myAudio"></image>
 
     </view>
-    <!-- <view bindtap="takePhoto" class='camera' style="background-image: url('https://img.icons8.com/carbon-copy/2x/camera--v2.png')"></view> -->
     <view bindtap="takePhoto" class='' >
       <image class="camera" src="/pages/files/icons/camera.png"></image>
     </view>
@@ -27,7 +24,7 @@
     <button class="btn-status" data-id="{{currentUser}}"style="" bindtap="updateNonCritical" class="status-btn crit">In critical condition</button>
   </view>
 
-  <view class="logo-container">
+  <view class="logo-container" bindtap="goToHomepage">
     <image src="/pages/files/icons/Talon-logo.png" alt=""></image>
   </view>
 </view>
