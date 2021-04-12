@@ -18,9 +18,37 @@ Page({
     talonUserInfo: {
       name: '',
       status: '',
-      imgUrl: ''
+      latitude: 0,
+      longitude: 0,
+      imgUrl: '',
     },
     markers: []
+  },
+
+  getRoute(e) {
+    console.log("e:", e)
+    let longitude = e.currentTarget.dataset.longitude
+    let latitude = e.currentTarget.dataset.latitude
+    let name = e.currentTarget.dataset.name
+    console.log("route latitude:", latitude)
+    let plugin = requirePlugin('routePlan');
+    let key = 'X6DBZ-J5NKU-OXRVY-4BGG6-6TRYZ-VMFUP'
+    let referer = 'wxb858e28accf918d9'
+    let page = this
+    console.log("logs:", page.data.longitude)
+    // let startPoint = JSON.stringify({  //起点
+    //   'name': 'Current location',
+    //   'latitude': page.data.latitude,
+    //   'longitude': page.data.longitude
+    // });
+    let endPoint = JSON.stringify({  //终点
+      'name': name,
+      'latitude': latitude,
+      'longitude': longitude,
+    });
+    wx.navigateTo({
+      url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
+    });
   },
 
   updateCurrentUser(data, callback = null) {
@@ -57,7 +85,7 @@ Page({
       },
     }
     this.updateCurrentUser(data)
-    console.log("refreshed Location!")
+    // console.log("refreshed Location!")
   },
 
   navigateToPatient(id) {
@@ -121,6 +149,8 @@ Page({
     })
     talonUserInfo.name = marker.name
     talonUserInfo.status = marker.status
+    talonUserInfo.longitude = marker.longitude
+    talonUserInfo.latitude = marker.latitude
     if (marker.imgUrl) {
       talonUserInfo.imgUrl = marker.imgUrl
     } else if (marker.status === "healthy") {
@@ -156,16 +186,38 @@ Page({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
-        let currentUser = wx.getStorage({
-          key: 'currentUser',
-        })
-        currentUser.wechat_account = wechatAccountNickname
-        currentUser.location = {
+        let dataForStorage = {
+          wechatAccountNickname,
           latitude,
-          longitude,
+          longitude
         }
+        if (!wx.getStorageSync('hasUserInfo')) this.setStorageUser(dataForStorage)
+      
       }
     })
+},
+setStorageUser(data){
+  console.log('SET STORAGE', data)
+   wx.getStorage({
+    key: 'currentUser',
+    success: (res) => {
+console.log(res)
+let currentUser = res.data
+currentUser.wechat_account = data.wechatAccountNickname
+  currentUser.location = {
+    latitude: data.latitude,
+    longitude: data.longitude,
+  }
+  console.log("updated user", currentUser)
+  wx.setStorageSync('currentUser', currentUser)
+  wx.setStorageSync('hasUserInfo', true)
+  console.log("updated storage", wx.getStorage({
+    key: 'currentUser',
+  }))
+    }
+  })
+  
+
 },
   getUserInfo(e) {
     // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息

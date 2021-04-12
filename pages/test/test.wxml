@@ -1,0 +1,8 @@
+<!--pages/test/test.wxml-->
+<text>pages/test/test.wxml</text>
+<map longitude="{{longitude}}" markers="{{markers}}" latitude="{{latitude}}" show-compass="true" show-scale="true" style="width:100%;height:400px"></map>
+
+<text>
+  Current latitude and longitude{{longitude}},{{latitude}}
+</text>
+<button bindtap="getRoute">Go to Beijing Xibei Train</button>

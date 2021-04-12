@@ -1,3 +1,5 @@
+
+<button bindtap="getRoute">Go to Beijing Xibei Train</button>
 <view wx:if="{{!loaded}}" class="animated-header">
   <view class="loading">Waiting for "load" event...</view>
   <view class="earth">
@@ -46,6 +48,8 @@
 
             <view class="status">Condition: {{talonUserInfo.status}}</view>
             <view class="description">
+              <button bindtap="getRoute" data-longitude="{{talonUserInfo.longitude}}" data-latitude="{{talonUserInfo.latitude}}" data-name="{{talonUserInfo.name}}">Route to {{talonUserInfo.name}}</button>
+              <view>{{talonUserInfo.longitude}}</view>
               <view class="details">SOS</view>
               <view class="need-help">
                 <icon class="iconfontlsda iconlocate-02"></icon>

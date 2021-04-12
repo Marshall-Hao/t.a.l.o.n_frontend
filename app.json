@@ -1,9 +1,10 @@
 {
   "pages":[
-    "pages/index/index",
     "pages/homepage/homepage",
     "pages/patient/patient",
-    "pages/poster/poster"
+    "pages/poster/poster",
+    "pages/test/test"
+    
   ],
 
   "requiredBackgroundModes": ["audio"],
@@ -20,8 +21,12 @@
     "scope.userLocation": {
       "desc": "你的位置信息将用于小程序位置接口的效果展示" 
     }
+  },
+  "plugins": {
+    "routePlan": {
+      "version": "1.0.12",
+      "provider": "wx50b5593e81dd937a"
+    }
   }
-
-
 }
 
