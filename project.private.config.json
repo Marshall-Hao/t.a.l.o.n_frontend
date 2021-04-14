@@ -18,10 +18,15 @@
           "query": "",
           "scene": null
         },
-        null,
         {
           "name": "patient",
           "pathName": "pages/patient/patient",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "test",
+          "pathName": "pages/test/test",
           "query": "",
           "scene": null
         }

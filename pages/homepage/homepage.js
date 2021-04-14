@@ -2,30 +2,38 @@
 const app = getApp()
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
+    tips: '',
+    show: false,
     loaded: false,
+    statusOk: false,
+    statusBad: false,
     userInfo: {},
     hasUserInfo: false,
     canIUseGetUserProfile: false,
     showDialog: false,
-    
     longitude: 0, //地图界面中心的经度
     latitude: 0, //地图界面中心的纬度
     talonUserInfo: {
+      avator: '',
       name: '',
       status: '',
-      imgUrl: ''
+      imgUrl: '',
+      longitude: 0,
+      latitude: 0
     },
+    imgArr:[
+      "../files/sos.jpeg",
+      "../files/sos.jpeg",
+      "../files/sos.jpeg",
+    ],
     markers: []
   },
 
   updateCurrentUser(data, callback = null) {
     let page = this
     let id = app.globalData.userId;
+    console.log("2nd id is", id)
     let base = app.globalData.baseUrl
     // console.log("callback:!", callback)
     wx.request({
@@ -40,11 +48,12 @@ Page({
 
   goToPatient: function (event) {
     let id = app.globalData.userId;
+    console.log("id is",id)
     let data = {
       role: 'patient',
       status: 'critical'
     }
-    let callback = this.navigateToPatient
+    let callback = this.navigateToPatient(id)
     this.updateCurrentUser(data, callback)
   },
 
@@ -61,7 +70,7 @@ Page({
   },
 
   navigateToPatient(id) {
-    wx.navigateTo({
+    wx.switchTab({
       url: `/pages/patient/patient?id=${id}`,
     })
   },
@@ -109,6 +118,58 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  pressBad(e) {
+    // console.log('=bindtapMap=', e),
+    this.setData({
+      statusBad: true,
+      show: false
+    })
+  },
+
+ pressOk(e) {
+    // console.log('=bindtapMap=', e),
+    this.setData({
+      statusOk: true,
+      show: false
+    })
+  },
+
+  confirmStatus(e) {
+    // console.log('=bindtapMap=', e),
+    this.setData({
+      statusOk: false,
+      statusBad: false
+    })
+  },
+
+  getRoute(e) {
+    console.log("e:", e)
+    let longitude = e.currentTarget.dataset.longitude
+    let latitude = e.currentTarget.dataset.latitude
+    let name = e.currentTarget.dataset.name
+    console.log("longitude:", longitude)
+    console.log("latitude:", latitude)
+    console.log("name", name)
+    let plugin = requirePlugin('routePlan');
+    let key = 'X6DBZ-J5NKU-OXRVY-4BGG6-6TRYZ-VMFUP'
+    let referer = 'wxd203f2a6d5477bc9'
+    let page = this
+    // console.log("logs:", page.data.longitude)
+    // let startPoint = JSON.stringify({  //起点
+    //   'name': 'Current location',
+    //   'latitude': page.data.latitude,
+    //   'longitude': page.data.longitude
+    // });
+    let endPoint = JSON.stringify({  //终点
+      'name': name,
+      'latitude': latitude,
+      'longitude': longitude,
+    });
+    wx.navigateTo({
+      url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
+    });
+  },
+
   markertap(e) {
     // console.log("markertap:", e)
     var id = e.detail.markerId
@@ -121,6 +182,8 @@ Page({
     })
     talonUserInfo.name = marker.name
     talonUserInfo.status = marker.status
+    talonUserInfo.longitude = marker.longitude
+    talonUserInfo.latitude = marker.latitude
     if (marker.imgUrl) {
       talonUserInfo.imgUrl = marker.imgUrl
     } else if (marker.status === "healthy") {
@@ -134,13 +197,31 @@ Page({
       showDialog: !this.data.showDialog,
     })
   },
+
+  preview(event) {
+    // console.log("---------", event.currentTarget)
+    // let currentUrl = event.currentTarget.dataset.src
+    var imgArr = this.data.imgArr;
+    wx.previewImage({
+      // current: "../files/sos.jpeg", // 当前显示图片的http链接
+      urls: imgArr // 需要预览的图片http链接列表
+    })
+  },
+
   getUserProfile(e) {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
     // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+    console.log('sign in clicked')
+    let page = this
     wx.getUserProfile({
       desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
-        // console.log('res:', res)
+        console.log('res:', res)
+        page.setData({
+          userInfo: res.userInfo
+        })
+        app.globalData.userInfo = res.userInfo
+        wx.setStorageSync('userInfo', res.userInfo)
         let wechatAccountNickname = res.userInfo.nickName
         let longitude = this.data.longitude
         let latitude = this.data.latitude
@@ -151,11 +232,14 @@ Page({
             longitude: longitude
           },
         }
+        console.log("wxrequest completed")
       this.updateCurrentUser(data)
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
+        app.globalData.userInfo = res.userInfo
+        app.globalData.hasUserInfo = true
         let currentUser = wx.getStorage({
           key: 'currentUser',
         })
@@ -195,6 +279,15 @@ setHasUserInfo(){
 },
 
   onLoad: function (options) {
+    wx.getStorage({
+      key: 'userInfo',
+      success: (res) => {
+        console.log("Storage get",res)
+        this.setData({userInfo: res.data})
+      }
+    })
+    
+    wx.stopPullDownRefresh()
     if (wx.getUserProfile) {
       this.setData({
         canIUseGetUserProfile: true
@@ -214,17 +307,19 @@ setHasUserInfo(){
           longitude: res.longitude,
         })
         if (longitude !== 0) setTimeout(that.showPosterPage, 2600);
-        that.refreshLocation()   
-        setInterval(function(){
-          that.refreshLocation()
-      }, 2000)
+        
+      //   that.refreshLocation()   
+      //   setInterval(function(){
+      //     that.refreshLocation()
+      // }, 20000)
       }
     })  
   },
 
 showPosterPage() {
   this.setData({
-    loaded: true
+    loaded: true,
+    show: true
   })
 },
 
@@ -285,7 +380,8 @@ showPosterPage() {
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    var that = this;
+    this.onLoad() //重新加载onLoad()
   },
 
   /**
