@@ -6,9 +6,8 @@
     <view class="cover-view-2" wx:if="{{show&&!hasUserInfo}}">
       <text class="ok-text">Are You Ok?</text>
       <cover-view class="choice">
-        <button type="primary" class="status ok">Ok</button>
-        <button type="warn" bindtap="goToPatient" data-id="{{userInfo.id}}"class="status non-ok">Not Ok</button>
-        
+        <button type="primary" class="status ok" bindtap="pressOk">Ok</button>
+        <button type="warn" bindtap="goToPatient" data-id="{{userInfo.id}}"class="status non-ok" bindtap="pressBad">Not Ok</button>
       </cover-view>
     </view>
 
@@ -19,7 +18,22 @@
           <text class="postext">Map Loading</text>
       </view>
     </view>
-    
+
+    <view class="cover-view" wx:if="{{statusOk}}"  >
+      <view class="container">
+          <text class="postext">Please help others</text>
+          <cover-view class="choice">
+        <button type="primary" class="status ok" bindtap="confirmStatus">Ok</button>
+      </cover-view>
+      </view>
+    </view>
+
+    <view class="cover-view" wx:if="{{statusBad}}"  >
+      <text class="postext">Be patient, someone will help you</text>
+      <cover-view class="choice">
+        <button type="primary" class="status ok" bindtap="confirmStatus">Ok</button>
+      </cover-view>
+    </view>
     <!-- 弹窗 -->
     <view class="{{ showDialog ? 'pop-up--show' : '' }}">
       <!-- <view class="pop-up__mask" /> -->
@@ -29,7 +43,9 @@
         <!-- <view class="content"> -->
         <view class="info-card">
           <image class="pop-up-img" src="{{userInfo.avatarUrl}}"></image>
-          <image class="route" src="../files/delivery.png"></image> 
+            <!-- <image class="route" src="../files/delivery.png" ></image>  -->
+            <view class="getRouteButton">test</view>
+          <button bindtap="getRoute" data-longitude="{{talonUserInfo.longitude}}" data-latitude="{{talonUserInfo.latitude}}" data-name="{{talonUserInfo.name}}">Route to {{talonUserInfo.name}}</button>
           <view class="info" >
             <view class="h2">{{talonUserInfo.name}}</view>
             <view class="p">Being Helped</view>
@@ -72,7 +88,7 @@
 
   <view class="userinfo">
     <block wx:if="{{!hasUserInfo}}">
-      <button wx:if="{{!canIUseGetUserProfile}}" bindtap="getUserProfile" type="primary"> Sign in</button>
+      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile" type="primary"> Sign in</button>
       <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> Sign innn</button>
     </block>
   </view>

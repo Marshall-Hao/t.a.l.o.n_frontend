@@ -186,37 +186,55 @@ Page({
   },
   onShow: function () {
     let page = this
-    let base = app.globalData.baseUrl
-    let markers = page.data.markers
-    let user = page.data.user
-    console.log("user",user)
-    wx.request({
-      url: `${base}/users/${user.id}`,
-      success(res) {
-        const currentUser = res.data;
-        page.setData({currentUser})
-        console.log(currentUser)
-      }
-    })
-    wx.request({
-      url: `${base}/users`,
-      success(res) {
-        // console.log("res", res)
-        let users = res.data.users
-        console.log("users",users)
-        let markers = users.map((user) => {
-          // console.log("user is", user)
-          return page.userToMarker(user)
-        })
-        markers = markers.filter(marker => marker.hasOwnProperty("latitude"))
-        // console.log(markers)
-        page.setData({
-          markers
-        })
-        // page.data.markers.push(res.data.users)
-        // console.log(markers)
+    console.log(111, page.options)
+    // page.ctx = wx.createCameraContext()
+    // page.setData({user})
+    // var that = this;
+    // wx.getLocation({
+    //   type: "wgs84",
+    //   isHighAccuracy: true,
+    //   success: function (res) {
+    //     var latitude = res.latitude;
+    //     var longitude = res.longitude;
+    //     console.log("当前位置的经纬度为：", res.latitude, res.longitude);
+    //     that.setData({
+    //       latitude: res.latitude,
+    //       longitude: res.longitude,
+    //     })
+    //   }
+    // })
+    // let page = this
+    // let base = app.globalData.baseUrl
+    // let markers = page.data.markers
+    // let user = page.data.user
+    // console.log("user",user)
+    // wx.request({
+    //   url: `${base}/users/${user.id}`,
+    //   success(res) {
+    //     const currentUser = res.data;
+    //     page.setData({currentUser})
+    //     console.log(currentUser)
+    //   }
+    // })
+    // wx.request({
+    //   url: `${base}/users`,
+    //   success(res) {
+    //     // console.log("res", res)
+    //     let users = res.data.users
+    //     console.log("users",users)
+    //     let markers = users.map((user) => {
+    //       // console.log("user is", user)
+    //       return page.userToMarker(user)
+    //     })
+    //     markers = markers.filter(marker => marker.hasOwnProperty("latitude"))
+    //     // console.log(markers)
+    //     page.setData({
+    //       markers
+    //     })
+    //     // page.data.markers.push(res.data.users)
+    //     // console.log(markers)
         
-      }
-    })
+    //   }
+    // })
   }
 })

@@ -6,6 +6,8 @@ Page({
     tips: '',
     show: false,
     loaded: false,
+    statusOk: false,
+    statusBad: false,
     userInfo: {},
     hasUserInfo: false,
     canIUseGetUserProfile: false,
@@ -16,7 +18,9 @@ Page({
       avator: '',
       name: '',
       status: '',
-      imgUrl: ''
+      imgUrl: '',
+      longitude: 0,
+      latitude: 0
     },
     imgArr:[
       "../files/sos.jpeg",
@@ -114,6 +118,58 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  pressBad(e) {
+    // console.log('=bindtapMap=', e),
+    this.setData({
+      statusBad: true,
+      show: false
+    })
+  },
+
+ pressOk(e) {
+    // console.log('=bindtapMap=', e),
+    this.setData({
+      statusOk: true,
+      show: false
+    })
+  },
+
+  confirmStatus(e) {
+    // console.log('=bindtapMap=', e),
+    this.setData({
+      statusOk: false,
+      statusBad: false
+    })
+  },
+
+  getRoute(e) {
+    console.log("e:", e)
+    let longitude = e.currentTarget.dataset.longitude
+    let latitude = e.currentTarget.dataset.latitude
+    let name = e.currentTarget.dataset.name
+    console.log("longitude:", longitude)
+    console.log("latitude:", latitude)
+    console.log("name", name)
+    let plugin = requirePlugin('routePlan');
+    let key = 'X6DBZ-J5NKU-OXRVY-4BGG6-6TRYZ-VMFUP'
+    let referer = 'wxd203f2a6d5477bc9'
+    let page = this
+    // console.log("logs:", page.data.longitude)
+    // let startPoint = JSON.stringify({  //起点
+    //   'name': 'Current location',
+    //   'latitude': page.data.latitude,
+    //   'longitude': page.data.longitude
+    // });
+    let endPoint = JSON.stringify({  //终点
+      'name': name,
+      'latitude': latitude,
+      'longitude': longitude,
+    });
+    wx.navigateTo({
+      url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
+    });
+  },
+
   markertap(e) {
     // console.log("markertap:", e)
     var id = e.detail.markerId
@@ -126,6 +182,8 @@ Page({
     })
     talonUserInfo.name = marker.name
     talonUserInfo.status = marker.status
+    talonUserInfo.longitude = marker.longitude
+    talonUserInfo.latitude = marker.latitude
     if (marker.imgUrl) {
       talonUserInfo.imgUrl = marker.imgUrl
     } else if (marker.status === "healthy") {

@@ -329,3 +329,8 @@ page {
 .wx-sign-in-btn{
     margin-top: 30rpx;
 }
+
+.getRouteButton {
+  background: url(../files/delivery.png);
+  padding: 50rpx;
+}
