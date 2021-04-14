@@ -1,7 +1,6 @@
 {
   "name": "t.a.l.o.n_frontend",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,5 +17,7 @@
   "homepage": "https://github.com/Marshall-Hao/t.a.l.o.n_frontend#readme",
   "dependencies": {
     "weui-miniprogram": "^1.0.7"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }

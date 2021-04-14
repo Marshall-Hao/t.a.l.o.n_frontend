@@ -3,16 +3,19 @@
     "pages/index/index",
     "pages/homepage/homepage",
     "pages/patient/patient",
-    "pages/poster/poster"
+    "pages/poster/poster",
+    "pages/chat/chat",
+    "pages/test/test"
   ],
 
   "requiredBackgroundModes": ["audio"],
 
   "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#000",
-    "navigationBarTitleText": "T.A.L.O.N - Emergency Map",
-    "navigationBarTextStyle":"white"
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#e6e6e6",
+    "navigationBarTitleText": "T A L O N",
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh":true
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
@@ -20,8 +23,29 @@
     "scope.userLocation": {
       "desc": "你的位置信息将用于小程序位置接口的效果展示" 
     }
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#000000",
+    "backgroundColor": "#e6e6e6",
+    "list": [{
+      "pagePath": "pages/homepage/homepage",
+      "iconPath": "pages/files/map.png",
+      "selectedIconPath": "pages/files/map (2).png",
+      "text": "Map"
+    }, 
+    {
+      "pagePath": "pages/chat/chat",
+      "iconPath": "pages/files/conversation.png",
+      "selectedIconPath": "pages/files/conversation (1).png",
+      "text": "Chat"
+    }, 
+    {
+      "pagePath": "pages/patient/patient",
+      "iconPath": "pages/files/user (1).png",
+      "selectedIconPath": "pages/files/user.png",
+      "text": "Me"
+    }]
   }
-
-
 }
 

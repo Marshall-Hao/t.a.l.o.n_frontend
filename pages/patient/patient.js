@@ -119,7 +119,7 @@ Page({
       marker.latitude = user.location.latitude
       marker.longitude = user.location.longitude
     }
-    console.log("patient marker is", marker)
+    // console.log("patient marker is", marker)
     return marker
   },
   iconPathColor(status) {
@@ -189,6 +189,7 @@ Page({
     let base = app.globalData.baseUrl
     let markers = page.data.markers
     let user = page.data.user
+    console.log("user",user)
     wx.request({
       url: `${base}/users/${user.id}`,
       success(res) {
