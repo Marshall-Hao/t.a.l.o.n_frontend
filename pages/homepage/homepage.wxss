@@ -131,10 +131,13 @@ page {
 } 
 
 .pop-up-img {
-  height: 80%;
-  width: 120px;
+  height: 160rpx;
+  width: 164rpx;
   padding: 10rpx 10rpx 0 10rpx;
-  object-fit: cover;
+  margin-left: 10rpx;
+  object-position: center;
+  border-radius: 10rpx;
+  /* object-fit: contain; */
 }
 
 .route {
@@ -144,6 +147,16 @@ page {
   width: 75rpx;
   padding: 10rpx 10rpx 0 10rpx;
   /* object-fit: cover; */
+}
+
+.hidebutton:not([size='mini']) 
+{
+  position: absolute;
+  right: 20rpx;
+  top: 50rpx;
+  height: 140rpx;
+  width: 120rpx;
+  opacity: 0;
 }
 
 .route:hover {
@@ -226,6 +239,7 @@ page {
   width: 185rpx;
   /* padding: 10rpx 10rpx 0 10rpx; */
   object-position: center;
+  border-radius: 10rpx;
 }
 
 .help {

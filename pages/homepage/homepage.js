@@ -211,10 +211,17 @@ Page({
   getUserProfile(e) {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
     // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+    console.log('sign in clicked')
+    let page = this
     wx.getUserProfile({
-      desc: 'The info will only used in Talon', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
         console.log('res:', res)
+        page.setData({
+          userInfo: res.userInfo
+        })
+        app.globalData.userInfo = res.userInfo
+        wx.setStorageSync('userInfo', res.userInfo)
         let wechatAccountNickname = res.userInfo.nickName
         let longitude = this.data.longitude
         let latitude = this.data.latitude
@@ -225,11 +232,14 @@ Page({
             longitude: longitude
           },
         }
+        console.log("wxrequest completed")
       this.updateCurrentUser(data)
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
+        app.globalData.userInfo = res.userInfo
+        app.globalData.hasUserInfo = true
         let currentUser = wx.getStorage({
           key: 'currentUser',
         })
@@ -269,6 +279,14 @@ setHasUserInfo(){
 },
 
   onLoad: function (options) {
+    wx.getStorage({
+      key: 'userInfo',
+      success: (res) => {
+        console.log("Storage get",res)
+        this.setData({userInfo: res.data})
+      }
+    })
+    
     wx.stopPullDownRefresh()
     if (wx.getUserProfile) {
       this.setData({
