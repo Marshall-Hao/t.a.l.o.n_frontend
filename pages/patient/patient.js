@@ -183,7 +183,7 @@ Page({
     wx.getStorage({
       key: 'userInfo',
       success: (res) => {
-        console.log("Storage get",res)
+        // console.log("Storage get",res)
         page.setData({userInfo: res.data})
         app.globalData.globalUserInfo = res.data
       }
