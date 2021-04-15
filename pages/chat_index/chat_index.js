@@ -36,7 +36,7 @@ selectResult: function (e) {
    */
   onLoad: function (options) {
     let page = this
-    let id = 2 //app.globalData.userId;
+    let id = app.globalData.userId;
     let base = app.globalData.baseUrl
     wx.request({
       url: `${base}/users/${id}/messages`,

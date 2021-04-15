@@ -32,7 +32,7 @@ Page({
   },
 
   messageUser(e) {
-      console.log(e)
+      console.log("e messageUser from homepage", e)
       const id = e.currentTarget.dataset.id
       wx.navigateTo({
         url: `/pages/chat_message/chat_message?id=${id}`,
@@ -191,6 +191,7 @@ Page({
     talonUserInfo.status = marker.status
     talonUserInfo.longitude = marker.longitude
     talonUserInfo.latitude = marker.latitude
+    talonUserInfo.id = marker.id
     if (marker.imgUrl) {
       talonUserInfo.imgUrl = marker.imgUrl
     } else if (marker.status === "healthy") {
