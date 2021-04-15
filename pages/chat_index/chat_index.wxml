@@ -1,0 +1,16 @@
+<!--pages/chat_index/chat_index.wxml-->
+<view class="page__bd">
+  <mp-searchbar bindselectresult="selectResult" search="{{search}}"></mp-searchbar>
+</view>
+<view class="cards" style="padding: 10rpx; background: #EDEDED; height: 90vh">
+  <view wx:for="{{messages}}" wx:key="unique" class="card-message" bindtap="goToShow" data-id="{{item[0]}}"
+    style="display: flex;background: #FFFFFF; border-radius: 5rpx; background-size: cover; align-items: center; margin-top: 5rpx;">
+    <view
+      style="background: url(https://picsum.photos/200); margin: 10rpx; padding: 50rpx; display: inline-block; border-radius: 5rpx">
+    </view>
+    <view class="card-product-infos" style="padding-left: 20rpx;">
+      <!-- <view class="h2">{{item[0]}}</view> -->
+      <view class="p">{{item[1]}}</view>
+    </view>
+  </view>
+</view>
