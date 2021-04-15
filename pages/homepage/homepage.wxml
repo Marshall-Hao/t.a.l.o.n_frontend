@@ -1,10 +1,9 @@
-<view class="userinfo">
+<!-- <view class="userinfo">
   <block wx:if="{{!hasUserInfo}}">
     <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> Sign in</button>
     <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> Sign in </button>
   </block>
-</view>
-
+</view> -->
 <view hover-class="none" hover-stop-propagation="false" style="width: 100%; height: 100%;">
 
   <map id="map" longitude="{{longitude}}" latitude=" {{latitude}}" markers="{{markers}}" scale="14" show-location
@@ -46,11 +45,8 @@
 
   </map>
   <view class="{{ showDialog ? 'pop-up--show' : '' }}">
-    <!-- <view class="pop-up__mask" /> -->
     <!-- 内容 -->
     <view class="pop-up-container">
-
-      <!-- <view class="content"> -->
       <view class="info-card">
         <image class="pop-up-img" src="{{userInfo.avatarUrl}}"></image>
         <image class="route" src="../files/delivery.png"></image>
@@ -64,14 +60,17 @@
       </view>
       <view class="status-card">
         <view class="status-detail">
-          <view class="p"><small>Status: {{talonUserInfo.status}}</small></view>
+          <view class="healthyinfo" wx:if="{{talonUserInfo.status=='healthy'}}" >
+            Status: {{talonUserInfo.status}}
+          </view>
+          <view wx:else class="criticalinfo">Status: {{talonUserInfo.status}}</view>
           <view class="p">
             DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription
           </view>
         </view>
       </view>
       <view class="pic-card">
-        <view class="pic-des">Pictures</view>
+        <view class="pic-des">Pictures:</view>
         <view class="pic">
           <image src="{{talonUserInfo.imgUrl}}" bindtap="preview"></image>
           <image src="{{talonUserInfo.imgUrl}}" bindtap="preview"></image>
@@ -79,7 +78,9 @@
         </view>
       </view>
       <view class="help">
-        <button bindtap="messageUser" data-id="{{userInfo.id}}" type="primary">Message</button>
+
+        <button class="message" bindtap="messageUser" data-id="{{userInfo.id}}">Message</button>
+
       </view>
     </view>
   </view>
