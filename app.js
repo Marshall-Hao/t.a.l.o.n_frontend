@@ -13,9 +13,9 @@ App({
             code: res.code
           },
           success: (res) => {
-            console.log(res)
+            // console.log(res)
             this.globalData.userId = res.data.userId
-            console.log("login successful, user ID is:", this.globalData)
+            // console.log("login successful, user ID is:", this.globalData)
 
             wx.setStorageSync('hasUserInfo', res.data.hasUserInfo)
             wx.setStorageSync('currentUser', res.data.currentUser)
@@ -29,7 +29,7 @@ App({
     // checking if the user is in Storage
     let user = wx.getStorageSync('currentUser')
     if (user) {
-      console.log('user is in the storage')
+      // console.log('user is in the storage')
       this.globalData.userId = user.id
     } else {
       this.login()
@@ -39,7 +39,7 @@ App({
     // checking if the user is in Storage
     let user = wx.getStorageSync('currentUser')
     if (user) {
-      console.log('user is in the storage')
+      // console.log('user is in the storage')
       this.globalData.userId = user.id
     } else {
       this.login()

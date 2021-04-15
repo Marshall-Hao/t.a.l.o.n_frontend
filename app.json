@@ -40,7 +40,7 @@
     }, 
     {
 
-      "pagePath": "pages/chat/chat",
+      "pagePath": "pages/chat_index/chat_index",
       "iconPath": "@iconPath2",
       "selectedIconPath": "@selectedIconPath2",
 
