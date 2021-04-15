@@ -13,7 +13,7 @@ Page({
   },
 
   goToShow: function(e) {
-    console.log(e)
+    console.log("gotoshow", e)
     const id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: `/pages/chat_message/chat_message?id=${id}`,

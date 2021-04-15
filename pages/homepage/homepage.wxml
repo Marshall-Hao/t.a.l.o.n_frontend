@@ -79,7 +79,7 @@
       </view>
       <view class="help">
 
-        <button class="message" bindtap="messageUser" data-id="{{userInfo.id}}">Message</button>
+        <button class="message" bindtap="messageUser" data-id="{{talonUserInfo.id}}">Message</button>
 
       </view>
     </view>

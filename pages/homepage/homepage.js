@@ -42,7 +42,7 @@ Page({
   updateCurrentUser(data, callback = null) {
     let page = this
     let id = app.globalData.userId;
-    console.log("2nd id is", id)
+    // console.log("2nd id is", id)
     let base = app.globalData.baseUrl
     // console.log("callback:!", callback)
     wx.request({
@@ -57,7 +57,7 @@ Page({
 
   goToPatient: function (event) {
     let id = app.globalData.userId;
-    console.log("id is",id)
+    // console.log("id is",id)
     let data = {
       role: 'patient',
       status: 'critical'
@@ -94,7 +94,7 @@ Page({
       width: 24,
       height: 24 //keep to the ratio 2:1
     }
-    console.log("MARKER", marker)
+    // console.log("MARKER", marker)
     marker.iconPath = this.iconPathColor(marker.status)
     if (user.location) {
       marker.latitude = user.location.latitude
@@ -150,13 +150,13 @@ Page({
   },
 
   getRoute(e) {
-    console.log("e:", e)
+    // console.log("e:", e)
     let longitude = e.currentTarget.dataset.longitude
     let latitude = e.currentTarget.dataset.latitude
     let name = e.currentTarget.dataset.name
-    console.log("longitude:", longitude)
-    console.log("latitude:", latitude)
-    console.log("name", name)
+    // console.log("longitude:", longitude)
+    // console.log("latitude:", latitude)
+    // console.log("name", name)
     let plugin = requirePlugin('routePlan');
     let key = 'X6DBZ-J5NKU-OXRVY-4BGG6-6TRYZ-VMFUP'
     let referer = 'wxd203f2a6d5477bc9'
@@ -219,12 +219,12 @@ Page({
   getUserProfile(e) {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
     // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    console.log('sign in clicked')
+    // console.log('sign in clicked')
     let page = this
     wx.getUserProfile({
       desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
-        console.log('res:', res)
+        // console.log('res:', res)
         page.setData({
           userInfo: res.userInfo
         })
@@ -240,7 +240,7 @@ Page({
             longitude: longitude
           },
         }
-        console.log("wxrequest completed")
+        // console.log("wxrequest completed")
       this.updateCurrentUser(data)
         this.setData({
           userInfo: res.userInfo,
@@ -271,7 +271,7 @@ Page({
     wx.getStorage({
       key: 'hasUserInfo',
       success: (res) => {
-        console.log("Storage get",res)
+        // console.log("Storage get",res)
         this.setData({hasUserInfo: res.data})
       }
     })
@@ -294,7 +294,7 @@ setHasUserInfo(){
     wx.getStorage({
       key: 'userInfo',
       success: (res) => {
-        console.log("Storage get",res)
+        // console.log("Storage get",res)
         this.setData({userInfo: res.data})
       }
     })
@@ -356,9 +356,9 @@ showPosterPage() {
       success(res) {
         // console.log("res", res)
         let users = res.data.users
-        console.log("users",users)
+        // console.log("users",users)
         let markers = users.map((user) => {
-          console.log("user is", user)
+          // console.log("user is", user)
           return page.userToMarker(user)
         })
         markers = markers.filter(marker => marker.hasOwnProperty("latitude"))

@@ -13,7 +13,7 @@ Page({
 
 
   send(e) {
-    console.log("submit e:", e)
+    // console.log("submit e:", e)
     console.log("submit data:", e.detail.value)
     let page = this
     let user_id = app.globalData.userId;
@@ -21,7 +21,7 @@ Page({
     let receiver_id = page.data.options.id
     let content = e.detail.value
     // { message: {content: 'test'} }
-    if (content.content.length > 1) {
+    if (content.content.length > 0) {
       wx.request({
         url: `${base}/users/${user_id}/messages/?receiver_id=${receiver_id}`,
         method: 'POST',
