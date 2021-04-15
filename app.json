@@ -5,7 +5,9 @@
     "pages/patient/patient",
     "pages/poster/poster",
     "pages/chat/chat",
-    "pages/test/test"
+    "pages/test/test",
+    "pages/chat_index/chat_index",
+    "pages/chat_message/chat_message"
   ],
 
   "requiredBackgroundModes": ["audio"],
@@ -35,7 +37,7 @@
       "text": "Map"
     }, 
     {
-      "pagePath": "pages/chat/chat",
+      "pagePath": "pages/chat_index/chat_index",
       "iconPath": "pages/files/conversation.png",
       "selectedIconPath": "pages/files/conversation (1).png",
       "text": "Chat"

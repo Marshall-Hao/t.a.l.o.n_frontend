@@ -1,0 +1,4 @@
+/* pages/chat_message/chat_message.wxss */
+page {
+  background: #EDEDED;
+}

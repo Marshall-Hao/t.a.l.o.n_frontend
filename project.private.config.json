@@ -29,6 +29,17 @@
           "pathName": "pages/test/test",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "Chat Index",
+          "pathName": "pages/chat_index/chat_index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "chat message",
+          "pathName": "pages/chat_message/chat_message",
+          "scene": null
         }
       ]
     }
