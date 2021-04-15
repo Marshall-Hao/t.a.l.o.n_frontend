@@ -45,7 +45,9 @@
     <view class="tool" bindtap="">
       <image src="../files/bell (1).png"></image>
     </view>
-    <view class="tool-status" bindtap="">status</view>
+    <view class="tool" bindtap="">
+      <image src="../files/icons/writing.png"></image>
+    </view>
 </view>
 
 <view class="tutorial-card">

@@ -91,8 +91,8 @@ Page({
       name: user.wechat_account,
       status: user.status,
       imgUrl: user.url,
-      width: 24,
-      height: 24 //keep to the ratio 2:1
+      width: 30,
+      height: 30 //keep to the ratio 2:1
     }
     // console.log("MARKER", marker)
     marker.iconPath = this.iconPathColor(marker.status)
@@ -106,9 +106,9 @@ Page({
 
   iconPathColor(status) {
     if (status === "healthy") {
-      return '../files/pin.png'
+      return '../files/icons/chillhelp.png'
     } else {
-      return '../files/gps.png'
+      return '../files/icons/sos.png'
     }
   },
 
