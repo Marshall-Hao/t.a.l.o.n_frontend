@@ -13,7 +13,7 @@ Page({
 
 
   send(e) {
-    console.log("submit e:", e)
+    // console.log("submit e:", e)
     console.log("submit data:", e.detail.value)
     let page = this
     let user_id = app.globalData.userId;
