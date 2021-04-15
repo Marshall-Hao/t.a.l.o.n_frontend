@@ -1,0 +1,39 @@
+{
+  "light": {
+      "navBgColor": "#f8f8f8",
+      "navTxtStyle": "black",
+      "bgColor": "#ffffff",
+      "bgTxtStyle": "dark",
+      "bgColorTop": "#f8f8f8",
+      "bgColorBottom": "#f8f8f8",
+      "tabFontColor": "#212121",
+      "tabSelectedColor": "#17B824",
+      "tabBgColor": "#feffff",
+      "tabBorderStyle": "black",
+      "iconPath1": "pages/files/icons/map.png",
+      "selectedIconPath1": "pages/files/icons/map-s.png",
+      "iconPath2": "pages/files/icons/message.png",
+      "selectedIconPath2": "pages/files/icons/message-s.png",
+      "iconPath3": "pages/files/icons/user.png",
+      "selectedIconPath3": "pages/files/icons/user-s.png"
+  },
+  "dark": {
+      "navBgColor": "#2c3440",
+      "navTxtStyle": "white",
+      "bgColor": "#1f1f1f",
+      "bgTxtStyle": "dark",
+      "bgColorTop": "#2c3440",
+      "bgColorBottom": "#1f1f1f",
+      "tabFontColor": "#c0c2c5",
+      "tabSelectedColor": "#17B824",
+      "tabBgColor": "#181E23",
+      "tabBorderStyle": "white",
+      "iconPath1": "pages/files/icons/map-d.png",
+      "selectedIconPath1": "pages/files/icons/map-s.png",
+      "iconPath2": "pages/files/icons/message-d.png",
+      "selectedIconPath2": "pages/files/icons/message-s.png",
+      "iconPath3": "pages/files/icons/user-d.png",
+      "selectedIconPath3": "pages/files/icons/user-s.png"
+  }
+}
+

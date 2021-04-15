@@ -11,12 +11,14 @@
   "requiredBackgroundModes": ["audio"],
 
   "window":{
-    "backgroundTextStyle":"dark",
-    "navigationBarBackgroundColor": "#e6e6e6",
+    "backgroundTextStyle":"@bgTxtStyle",
+    "navigationBarBackgroundColor": "@navBgColor",
     "navigationBarTitleText": "T A L O N",
-    "navigationBarTextStyle":"black",
+    "navigationBarTextStyle":"@navTxtStyle",
     "enablePullDownRefresh":true
   },
+  "darkmode": true,
+  "themeLocation": "theme.json",
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "permission": {
@@ -25,25 +27,25 @@
     }
   },
   "tabBar": {
-    "color": "#000000",
-    "selectedColor": "#000000",
-    "backgroundColor": "#e6e6e6",
+    "color": "@tabFontColor",
+    "selectedColor": "@tabSelectedColor",
+    "backgroundColor": "@tabBgColor",
     "list": [{
       "pagePath": "pages/homepage/homepage",
-      "iconPath": "pages/files/map.png",
-      "selectedIconPath": "pages/files/map (2).png",
+      "iconPath": "@iconPath1",
+      "selectedIconPath": "@selectedIconPath1",
       "text": "Map"
     }, 
     {
       "pagePath": "pages/chat/chat",
-      "iconPath": "pages/files/conversation.png",
-      "selectedIconPath": "pages/files/conversation (1).png",
+      "iconPath": "@iconPath2",
+      "selectedIconPath": "@selectedIconPath2",
       "text": "Chat"
     }, 
     {
       "pagePath": "pages/patient/patient",
-      "iconPath": "pages/files/user (1).png",
-      "selectedIconPath": "pages/files/user.png",
+      "iconPath": "@iconPath3",
+      "selectedIconPath": "@selectedIconPath3",
       "text": "Me"
     }]
   },

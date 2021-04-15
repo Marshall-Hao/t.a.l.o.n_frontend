@@ -20,7 +20,8 @@ Page({
       status: '',
       imgUrl: '',
       longitude: 0,
-      latitude: 0
+      latitude: 0,
+      location: ''
     },
     imgArr:[
       "../files/sos.jpeg",
@@ -83,7 +84,7 @@ Page({
       status: user.status,
       imgUrl: user.url,
       width: 24,
-      height: 48 //keep to the ratio 2:1
+      height: 24 //keep to the ratio 2:1
     }
     console.log("MARKER", marker)
     marker.iconPath = this.iconPathColor(marker.status)
@@ -97,11 +98,9 @@ Page({
 
   iconPathColor(status) {
     if (status === "healthy") {
-      return '/testpins/Talon-blue-pin.png'
-    } else if (status === "critical") {
-      return '/testpins/Talon-red-pin.png'
+      return '../files/pin.png'
     } else {
-      return '/testpins/Talon-orange-pin.png'
+      return '../files/gps.png'
     }
   },
 
@@ -279,6 +278,10 @@ setHasUserInfo(){
 },
 
   onLoad: function (options) {
+    let userInfo = app.globalData.globalUserInfo
+    this.setData({
+      userInfo,
+    })
     wx.getStorage({
       key: 'userInfo',
       success: (res) => {

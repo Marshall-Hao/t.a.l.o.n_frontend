@@ -18,6 +18,69 @@ Page({
       markers: []
   },
 
+  updateCurrentUser(data, callback = null) {
+    let page = this
+    let id = app.globalData.userId;
+    console.log("2nd id is", id)
+    let base = app.globalData.baseUrl
+    // console.log("callback:!", callback)
+    wx.request({
+      url: `${base}/users/${id}`,
+      method: 'PUT',
+      data,
+      success(res) {
+      if (callback)  callback(id)
+      }
+    })
+  },
+
+  getUserProfile(e) {
+    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+    console.log('sign in clicked')
+    let page = this
+    wx.getUserProfile({
+      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        console.log('res:', res)
+        page.setData({
+          userInfo: res.userInfo
+        })
+        app.globalData.userInfo = res.userInfo
+        app.globalData.hasUserInfo = true
+        wx.setStorageSync('userInfo', res.userInfo)
+        let wechatAccountNickname = res.userInfo.nickName
+        let longitude = this.data.longitude
+        let latitude = this.data.latitude
+        let data = {
+          wechat_account: wechatAccountNickname,
+          location: {
+            latitude: latitude,
+            longitude: longitude
+          },
+        }
+        console.log("wxrequest completed")
+      this.updateCurrentUser(data)
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+        app.globalData.userInfo = res.userInfo
+        app.globalData.hasUserInfo = true
+        let currentUser = wx.getStorage({
+          key: 'currentUser',
+        })
+        currentUser.wechat_account = wechatAccountNickname
+        currentUser.location = {
+          latitude,
+          longitude,
+        }
+      }
+    })
+},
+
+
+
   goToHomepage() {
     wx.navigateTo({
       url: '/pages/homepage/homepage',
@@ -105,88 +168,44 @@ Page({
     console.log('Current user', page.data.currentUser.status)
     return page.updateCurrentUser(currentUser)
   },
-  userToMarker(user) {
-    // console.log(user)
-    let marker = {
-      id: user.id,
-      name: user.wechat_account,
-      status: user.status,
-      width: 24,
-      height: 48
-    }
-    marker.iconPath = this.iconPathColor(marker.status)
-    if (user.location) {
-      marker.latitude = user.location.latitude
-      marker.longitude = user.location.longitude
-    }
-    // console.log("patient marker is", marker)
-    return marker
-  },
-  iconPathColor(status) {
-    if (status=== "healthy") {
-      return '/testpins/Talon-blue-pin.png'}
-    else if (status === "critical") {
-      return '/testpins/Talon-red-pin.png'
-    } else {
-      return '/testpins/Talon-orange-pin.png'
-    }
-  },
-  bindregionchange(e) {
-    // console.log('=bindregiοnchange=', e)
-  },
-
-  bindtapMap(e) {
-    // console.log('=bindtapMap=', e),
-    this.setData({
-      showDialog: false,
-    })
-  },
-
-  markertap(e) {
-    // console.log("markertap:", e)
-    var id = e.detail.markerId
-    // console.log('id:', id)
-    // var name = this.data.markers[id - 1].name
-    // console.log("name:", name)
-    let talonUserInfo = this.data.talonUserInfo
-    let marker = this.data.markers.find((marker) => {
-      return marker.id === id
-    })
-    talonUserInfo.name = marker.name
-    talonUserInfo.status = marker.status
-    talonUserInfo.imgUrl = marker.imgUrl
-    // console.log(userInfo)
-    this.setData({
-      talonUserInfo,
-      showDialog: !this.data.showDialog,
-    })
-  },
 
   onLoad: function (user) {
-    let page = this
-    page.ctx = wx.createCameraContext()
-    page.setData({user})
-    var that = this;
-    wx.getLocation({
-      type: "wgs84",
-      isHighAccuracy: true,
-      success: function (res) {
-        var latitude = res.latitude;
-        var longitude = res.longitude;
-        console.log("当前位置的经纬度为：", res.latitude, res.longitude);
-        that.setData({
-          latitude: res.latitude,
-          longitude: res.longitude,
-        })
-      }
-    })
   },
   onReady: function () {
     this.audioCtx = wx.createAudioContext('myAudio')
   },
   onShow: function () {
     let page = this
-    console.log(111, page.options)
+    let hasUserInfo = app.globalData.hasUserInfo
+    page.setData({
+      hasUserInfo,
+    })
+    wx.getStorage({
+      key: 'userInfo',
+      success: (res) => {
+        console.log("Storage get",res)
+        page.setData({userInfo: res.data})
+        app.globalData.globalUserInfo = res.data
+      }
+    })
+    page.ctx = wx.createCameraContext()
+    // page.setData({user})
+    // var that = this;
+    // wx.getLocation({
+    //   type: "wgs84",
+    //   isHighAccuracy: true,
+    //   success: function (res) {
+    //     var latitude = res.latitude;
+    //     var longitude = res.longitude;
+    //     console.log("当前位置的经纬度为：", res.latitude, res.longitude);
+    //     that.setData({
+    //       latitude: res.latitude,
+    //       longitude: res.longitude,
+    //     })
+    //   }
+    // })
+    // let page = this
+    // console.log(111, page.options)
     // page.ctx = wx.createCameraContext()
     // page.setData({user})
     // var that = this;
