@@ -30,6 +30,14 @@ Page({
     markers: []
   },
 
+  messageUser(e) {
+      console.log(e)
+      const id = e.currentTarget.dataset.id
+      wx.navigateTo({
+        url: `/pages/chat_message/chat_message?id=${id}`,
+      })
+  },
+
   updateCurrentUser(data, callback = null) {
     let page = this
     let id = app.globalData.userId;
