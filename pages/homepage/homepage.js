@@ -31,7 +31,7 @@ Page({
   },
 
   messageUser(e) {
-      console.log(e)
+      console.log("e messageUser from homepage", e)
       const id = e.currentTarget.dataset.id
       wx.navigateTo({
         url: `/pages/chat_message/chat_message?id=${id}`,
@@ -91,7 +91,10 @@ Page({
       status: user.status,
       imgUrl: user.url,
       width: 24,
-      height: 48 //keep to the ratio 2:1
+      height: 48, //keep to the ratio 2:1
+      callout: {
+        content: "hi"
+      }
     }
     console.log("MARKER", marker)
     marker.iconPath = this.iconPathColor(marker.status)
@@ -192,6 +195,7 @@ Page({
     talonUserInfo.status = marker.status
     talonUserInfo.longitude = marker.longitude
     talonUserInfo.latitude = marker.latitude
+    talonUserInfo.id = marker.id
     if (marker.imgUrl) {
       talonUserInfo.imgUrl = marker.imgUrl
     } else if (marker.status === "healthy") {
