@@ -14,7 +14,7 @@
       <text class="ok-text">Are You Ok?</text>
       <cover-view class="choice">
         <button class="status-g ok" >Ok</button>
-        <button wx:if="{{hasUserInfo}}" bindtap="goToPatient" data-id="{{userInfo.id}}" class="status-o non-ok">Not
+        <button bindtap="goToPatient" data-id="{{userInfo.id}}" class="status-o non-ok">Not
           Ok</button>
       </cover-view>
     </view>
