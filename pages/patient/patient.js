@@ -4,6 +4,8 @@ Page({
    * Page initial data
    */
   data: {
+      descriptionDialog: false,
+      description: "",
       src: 'https://project-lw.oss-cn-shenzhen.aliyuncs.com/bell_sound_effect.mp3?versionId=CAEQHBiBgMDWjt3UxRciIDdiZDBjM2Q1YzZiNDRiMGI5ZWZmNTM2MmI1YTYxNDFl',
       alarm: false,
       user: {},
@@ -16,6 +18,22 @@ Page({
         imgUrl: ''
       },
       markers: []
+  },
+
+  writeDescription(){
+    this.setData({
+      descriptionDialog: true
+    })
+  },
+
+  submitDescription(e){
+    // console.log("submit data:", e.detail.value)
+    let description = e.detail.value.content
+    this.setData({
+      description,
+      descriptionDialog: false
+    })
+    this.updateDbAvatarAndDescription()
   },
 
   checkSignedIn(){
@@ -91,7 +109,8 @@ Page({
           },
         }
         console.log("wxrequest completed")
-      this.updateCurrentUser(data)
+        // this.updateCurrentUser(data)
+        this.updateDbAvatarAndDescription()
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
@@ -119,8 +138,9 @@ Page({
   }, 
 
   updateCurrentUser(currentUser) {
+    console.log(123456)
     let page = this
-    let id = page.data.currentUser.id
+    let id = page.data.currentUser.id //localhost: 2/4
     console.log(id)
     let base = app.globalData.baseUrl
     let data = page.data.currentUser
@@ -135,6 +155,30 @@ Page({
       }
     })
   },
+
+  updateDbAvatarAndDescription(){
+    let page = this
+    let avatar = page.data.userInfo.avatarUrl
+    let description = page.data.description;
+    let base = app.globalData.baseUrl;
+    let id = app.globalData.userId; //localhost: 2/4
+    let body = {
+      avatar: avatar,
+      description: description
+    }
+    console.log({body})
+    wx.request({
+      url: `${base}/users/${id}`,
+      method: 'PUT',
+      data: {
+        user: body
+      },
+      success(res) {
+        console.log({res})
+      }
+    })
+  },
+
   audioPlay: function (e) {
     let page = this 
     let alarm = page.data.alarm = true;

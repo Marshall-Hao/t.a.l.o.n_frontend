@@ -21,7 +21,9 @@ Page({
       imgUrl: '',
       longitude: 0,
       latitude: 0,
-      location: ''
+      location: '',
+      description: ''
+
     },
     imgArr:[
       "../files/sos.jpeg",
@@ -78,7 +80,7 @@ Page({
 
   updateCurrentUser(data, callback = null) {
     let page = this
-    let id = app.globalData.userId;
+    let id = app.globalData.userId; //localhost: 2
     // console.log("2nd id is", id)
     let base = app.globalData.baseUrl
     // console.log("callback:!", callback)
@@ -93,7 +95,7 @@ Page({
   },
 
   goToPatient: function (event) {
-    let id = app.globalData.userId;
+    let id = app.globalData.userId; //localhost: 2
     // console.log("id is",id)
     let data = {
       role: 'patient',
@@ -104,7 +106,7 @@ Page({
   },
 
   refreshLocation() {
-    let id = app.globalData.userId;
+    let id = app.globalData.userId; //localhost: 2
     let data = {
       location: {
         latitude: this.data.latitude,
@@ -112,9 +114,9 @@ Page({
       },
     }
     this.updateCurrentUser(data)
-    console.log("refreshed Location!")
+    // console.log("refreshed Location!")
     this.setMarkers()
-    console.log("markers refreshed!")
+    // console.log("markers refreshed!")
   },
 
   navigateToPatient(id) {
@@ -124,11 +126,13 @@ Page({
   },
 
   userToMarker(user) {
-    // console.log(user)
+    console.log({user})
     let marker = {
       id: user.id,
       name: user.wechat_account,
       status: user.status,
+      avatarUrl: user.avatar,
+      description: user.description,
       imgUrl: user.url,
       width: 30,
       height: 30 //keep to the ratio 2:1
@@ -231,8 +235,10 @@ Page({
     talonUserInfo.longitude = marker.longitude
     talonUserInfo.latitude = marker.latitude
     talonUserInfo.id = marker.id
-    if (marker.imgUrl) {
-      talonUserInfo.imgUrl = marker.imgUrl
+    talonUserInfo.imgUrl = marker.imgUrl
+    talonUserInfo.description = marker.description
+    if (marker.avatarUrl) {
+      talonUserInfo.avatarUrl = marker.avatarUrl
     } else if (marker.status === "healthy") {
       talonUserInfo.imgUrl = "../files/HereToHelp.jpeg"
     } else {
@@ -297,7 +303,11 @@ Page({
         }
       }
     })
+  page.updateDbAvatarAndDescription
 },
+
+
+
   getUserInfo(e) {
     // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
     this.setData({

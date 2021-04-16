@@ -65,7 +65,7 @@
           </view>
           <view wx:else class="criticalinfo">Status: {{talonUserInfo.status}}</view>
           <view class="p">
-            DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription
+            Description {{talonUserInfo.description}}
           </view>
         </view>
       </view>
