@@ -18,6 +18,31 @@ Page({
       markers: []
   },
 
+  checkSignedIn(){
+    // console.log('setting from storage')
+    wx.getStorage({
+      key: 'hasUserInfo',
+      success: (res) => {
+        // console.log("Storage get",res)
+        this.setData({hasUserInfo: res.data})
+      }
+    })
+    wx.getStorage({
+      key: 'userInfo',
+      success: (res) => {
+        // console.log("Storage get",res)
+        this.setData({userInfo: res.data})
+      }
+    })
+    wx.getStorage({
+      key: 'signedIn',
+      success: (res) => {
+        // console.log("Storage get",res)
+        this.setData({signedIn: res.data})
+      }
+    })
+  },
+
   updateCurrentUser(data, callback = null) {
     let page = this
     let id = app.globalData.userId;
@@ -48,7 +73,10 @@ Page({
         })
         app.globalData.userInfo = res.userInfo
         app.globalData.hasUserInfo = true
+        app.globalData.signedIn = true
         wx.setStorageSync('userInfo', res.userInfo)
+        wx.setStorageSync('signedIn', true)
+
         let wechatAccountNickname = res.userInfo.nickName
         let longitude = this.data.longitude
         let latitude = this.data.latitude
@@ -176,6 +204,7 @@ Page({
   },
   onShow: function () {
     let page = this
+    page.checkSignedIn()
     let hasUserInfo = app.globalData.hasUserInfo
     page.setData({
       hasUserInfo,
