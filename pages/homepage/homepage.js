@@ -31,12 +31,49 @@ Page({
     markers: []
   },
 
+  checkSignedIn(){
+    // console.log('setting from storage')
+    wx.getStorage({
+      key: 'hasUserInfo',
+      success: (res) => {
+        // console.log("Storage get",res)
+        this.setData({hasUserInfo: res.data})
+      }
+    })
+    wx.getStorage({
+      key: 'userInfo',
+      success: (res) => {
+        // console.log("Storage get",res)
+        this.setData({userInfo: res.data})
+      }
+    })
+    wx.getStorage({
+      key: 'signedIn',
+      success: (res) => {
+        // console.log("Storage get",res)
+        this.setData({signedIn: res.data})
+      }
+    })
+  },
+
   messageUser(e) {
-      console.log("e messageUser from homepage", e)
-      const id = e.currentTarget.dataset.id
-      wx.navigateTo({
-        url: `/pages/chat_message/chat_message?id=${id}`,
+    let signedIn = this.data.signedIn
+    if (signedIn) {
+        // console.log("e messageUser from homepage", e)
+        const id = e.currentTarget.dataset.id
+        wx.navigateTo({
+          url: `/pages/chat_message/chat_message?id=${id}`,
+        })
+    } else {
+      wx.switchTab({
+        url: '/pages/patient/patient',
       })
+      wx.showToast({
+        title: 'Please sign in',
+        duration: 1000,
+        mask: true
+      })
+    }
   },
 
   updateCurrentUser(data, callback = null) {
@@ -76,6 +113,8 @@ Page({
     }
     this.updateCurrentUser(data)
     console.log("refreshed Location!")
+    this.setMarkers()
+    console.log("markers refreshed!")
   },
 
   navigateToPatient(id) {
@@ -277,15 +316,6 @@ Page({
     })
   },
 
-setHasUserInfo(){
-  wx.getStorage({
-    key: 'hasUserInfo',
-    success: (res) => {
-      this.setData({hasUserInfo: res.data})
-    }
-  })
-},
-
   onLoad: function (options) {
     let userInfo = app.globalData.globalUserInfo
     this.setData({
@@ -320,10 +350,10 @@ setHasUserInfo(){
         })
         if (longitude !== 0) setTimeout(that.showPosterPage, 2600);
         
-      //   that.refreshLocation()   
-      //   setInterval(function(){
-      //     that.refreshLocation()
-      // }, 20000)
+        that.refreshLocation()   
+        setInterval(function(){
+          that.refreshLocation()
+      }, 30000)
       }
     })  
   },
@@ -348,6 +378,12 @@ showPosterPage() {
    */
   onShow: function () {
     let page = this;
+    page.checkSignedIn()
+    page.setMarkers()
+  },
+
+  setMarkers(){
+    let page = this
     let base = app.globalData.baseUrl;
     let markers = page.data.markers
     this.setHasUserInfo()
@@ -371,7 +407,6 @@ showPosterPage() {
         
       }
     })
-   
   },
 
   /**
