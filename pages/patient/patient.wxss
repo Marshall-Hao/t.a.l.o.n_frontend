@@ -148,6 +148,16 @@ page {
   padding: 0 24rpx;
 }
 
+.send:not([size='mini'])
+{
+  height: 80rpx;
+  line-height: 42rpx;
+  width: 190rpx;
+  border-radius: 25rpx;
+  background: #17B824;
+  font-weight: medium;
+}
+
 @media (prefers-color-scheme: dark) {
   page{
     height: 100%;
@@ -295,6 +305,11 @@ page {
   .tuorial {
     flex-grow: 1;
     padding: 0 24rpx;
+  }
+
+  .input {
+    color: white;
+    opacity: 0.7;
   }
 }
 
