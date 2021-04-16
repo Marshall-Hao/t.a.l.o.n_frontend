@@ -66,7 +66,7 @@ Page({
         })
     } else {
       wx.switchTab({
-        url: '/pages/patient/patient',
+        url: '/pages/patient/patient?id=${id}',
       })
       wx.showToast({
         title: 'Please sign in',
@@ -94,7 +94,7 @@ Page({
 
   goToPatient: function (event) {
     let id = app.globalData.userId;
-    // console.log("id is",id)
+    console.log("id is",id)
     let data = {
       role: 'patient',
       status: 'critical'
@@ -350,10 +350,10 @@ Page({
         })
         if (longitude !== 0) setTimeout(that.showPosterPage, 2600);
         
-        that.refreshLocation()   
-        setInterval(function(){
-          that.refreshLocation()
-      }, 30000)
+      //   that.refreshLocation()   
+      //   setInterval(function(){
+      //     that.refreshLocation()
+      // }, 30000)
       }
     })  
   },

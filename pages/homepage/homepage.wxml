@@ -9,11 +9,12 @@
   <map id="map" longitude="{{longitude}}" latitude=" {{latitude}}" markers="{{markers}}" scale="14" show-location
     style="width: 100%; height: 100%;" bindmarkertap="markertap" bindregionchange="bindregionchange"
     bindtap="bindtapMap">
+    <!-- wx:if="{{show&&!hasUserInfo}}" -->
     <view class="cover-view-2" wx:if="{{show&&!hasUserInfo}}">
       <text class="ok-text">Are You Ok?</text>
       <cover-view class="choice">
-        <button type="primary" class="status ok" bindtap="pressOk">Ok</button>
-        <button type="warn" bindtap="goToPatient" data-id="{{userInfo.id}}" class="status non-ok" bindtap="pressBad">Not
+        <button class="status-g ok" >Ok</button>
+        <button wx:if="{{hasUserInfo}}" bindtap="goToPatient" data-id="{{userInfo.id}}" class="status-o non-ok">Not
           Ok</button>
       </cover-view>
     </view>
@@ -26,21 +27,21 @@
       </view>
     </view>
 
-    <view class="cover-view" wx:if="{{statusOk}}">
+    <!-- <view class="cover-view" wx:if="{{statusOk}}">
       <view class="container">
         <text class="postext">Please help others</text>
         <cover-view class="choice">
           <button type="primary" class="status ok" bindtap="confirmStatus">Ok</button>
         </cover-view>
       </view>
-    </view>
+    </view> -->
 
-    <view class="cover-view" wx:if="{{statusBad}}">
+    <!-- <view class="cover-view" wx:if="{{statusBad}}">
       <text class="postext">Be patient, someone will help you</text>
       <cover-view class="choice">
         <button type="primary" class="status ok" bindtap="confirmStatus">Ok</button>
       </cover-view>
-    </view>
+    </view> -->
     <!-- 弹窗 -->
 
   </map>
