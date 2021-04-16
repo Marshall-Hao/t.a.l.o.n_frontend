@@ -1,1 +1,62 @@
-/* pages/chat_index/chat_index.wxss */
+page {
+  background: rgb(248, 248, 248); 
+  letter-spacing: 3rpx;
+  opacity: 0.88;
+}
+
+.cards {
+  padding: 10rpx; 
+  /* background: #EDEDED;  */
+  height: 90vh
+}
+
+.card-message {
+  display: flex;
+  background: rgb(254, 255, 255); 
+  border-radius: 5rpx; 
+  background-size: cover; 
+  align-items: center; 
+  margin-top: 4rpx;
+}
+
+.avatar {
+  margin: 10rpx; 
+  padding: 50rpx; 
+  display: inline-block; 
+  border-radius: 5rpx
+}
+
+.card-product-infos {
+  padding-left: 20rpx;
+}
+
+@media (prefers-color-scheme: dark) {
+  page {
+    background: #2c3440; 
+    letter-spacing: 3rpx;
+    opacity: 0.7;
+    color: white;
+  }
+
+  .cards {
+    padding: 10rpx; 
+    /* background: #EDEDED;  */
+    height: 90vh
+  }
+  
+  .card-message {
+    display: flex;
+    background: #181E23; 
+    border-radius: 5rpx; 
+    background-size: cover; 
+    align-items: center; 
+    margin-top: 4rpx;
+  }
+  
+  .avatar {
+    margin: 10rpx; 
+    padding: 50rpx; 
+    display: inline-block; 
+    border-radius: 5rpx
+  }
+}
