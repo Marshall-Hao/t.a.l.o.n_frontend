@@ -25,6 +25,7 @@
     <image src="/pages/files/icons/Talon-logo.png" alt=""></image>
   </view>
     </view> -->
+
 <view  class="login" wx:if="{{!signedIn}}" bindtap="getUserProfile"> 
   <view class="login-info">
     Sign In
@@ -39,12 +40,18 @@
 
 
 <view class="tools-card">
-    <view class="tool camera" bindtap="">
+    <view class="tool camera" bindtap="takePhoto">
       <image src="../files/photo-camera-tool (1).png"></image>
     </view>
-    <view class="tool" bindtap="">
-      <image src="../files/bell (1).png"></image>
+    <audio  style="display: none" src="{{src}}" id="myAudio" controls loop></audio>
+    <view class="tool" wx:if="{{alarm === false}}" bindtap="audioPlay" >
+      <image  src="../files/bell (1).png"></image>
     </view>
+
+    <view wx:else class="tool" bindtap="audioPause" >
+      <image  src="../files/bell (1).png"></image>
+    </view>
+
     <view class="tool" bindtap="writeDescription">
       <image src="../files/icons/writing.png"></image>
     </view>

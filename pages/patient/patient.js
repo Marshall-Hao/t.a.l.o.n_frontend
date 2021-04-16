@@ -131,11 +131,11 @@ Page({
 
 
 
-  goToHomepage() {
-    wx.navigateTo({
-      url: '/pages/homepage/homepage',
-    })
-  }, 
+  // goToHomepage() {
+  //   wx.navigateTo({
+  //     url: '/pages/homepage/homepage',
+  //   })
+  // }, 
 
   updateCurrentUser(currentUser) {
     console.log(123456)
@@ -194,6 +194,7 @@ Page({
   takePhoto() {
     let page = this
     let id = page.data.currentUser.id
+    console.log("this page id is", id)
     let baseurl = app.globalData.baseUrl
     // console.log(baseurl)
     wx.chooseImage({
@@ -204,13 +205,14 @@ Page({
         // console.log('chooseImage',res)
         const tempFilePaths = res.tempFilePaths[0]
         wx.uploadFile({
-          url: `${baseurl}/users/${id}/update_photo`, //仅为示例，非真实的接口地址
+          url: `${baseurl}/users/${id}/update_photo`, //真实的接口地址
           filePath: tempFilePaths,
           name: 'photo',
           formData: {
             'user': 'test'
           },
           success (res){
+            console.log("url res is", res)
             const data = res.data
             console.log(data)
             wx.showToast({
@@ -246,6 +248,7 @@ Page({
 
   onLoad: function (user) {
   },
+
   onReady: function () {
     this.audioCtx = wx.createAudioContext('myAudio')
   },
@@ -264,6 +267,10 @@ Page({
         app.globalData.globalUserInfo = res.data
       }
     })
+    let currentUser = wx.getStorageSync('currentUser')
+    console.log({currentUser})
+    page.setData({currentUser})
+    
     page.ctx = wx.createCameraContext()
     // page.setData({user})
     // var that = this;
