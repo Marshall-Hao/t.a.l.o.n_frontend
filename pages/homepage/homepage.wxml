@@ -13,7 +13,7 @@
     <view class="cover-view-2" wx:if="{{show&&!hasUserInfo}}">
       <text class="ok-text">Are You Ok?</text>
       <cover-view class="choice">
-        <button class="status-g ok" >Ok</button>
+        <button class="status-g ok" bindtap="pressOk">Ok</button>
         <button bindtap="goToPatient" data-id="{{userInfo.id}}" class="status-o non-ok">Not
           Ok</button>
       </cover-view>
