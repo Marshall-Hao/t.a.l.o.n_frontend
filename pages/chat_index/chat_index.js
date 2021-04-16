@@ -35,6 +35,20 @@ selectResult: function (e) {
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+
+  },
+
+  /**
+   * Lifecycle function--Called when page is initially rendered
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * Lifecycle function--Called when page show
+   */
+  onShow: function () {
     let page = this
     let id = app.globalData.userId; //localhost: 2
     let base = app.globalData.baseUrl
@@ -50,20 +64,6 @@ selectResult: function (e) {
     this.setData({
       search: this.search.bind(this)
     })
-  },
-
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
-
   },
 
   /**
