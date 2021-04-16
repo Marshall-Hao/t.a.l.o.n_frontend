@@ -25,7 +25,7 @@
     <image src="/pages/files/icons/Talon-logo.png" alt=""></image>
   </view>
     </view> -->
-<view  class="login" wx:if="{{!hasUserInfo}}" bindtap="getUserProfile"> 
+<view  class="login" wx:if="{{!signedIn}}" bindtap="getUserProfile"> 
   <view class="login-info">
     Sign In
   </view>
