@@ -184,6 +184,8 @@ Page({
       statusOk: true,
       show: false
     })
+    let data = {stats: 'healthy'}
+    this.updateCurrentUser(data)
   },
 
   confirmStatus(e) {
@@ -239,8 +241,8 @@ Page({
     talonUserInfo.id = marker.id
     talonUserInfo.imgUrl = marker.imgUrl
     talonUserInfo.description = marker.description
-    if (marker.avatarUrl) {
-      talonUserInfo.avatarUrl = marker.avatarUrl
+    if (marker.imgUrl) {
+      talonUserInfo.imgUrl = marker.imgUrl
     } else if (marker.status === "healthy") {
       talonUserInfo.imgUrl = "../files/HereToHelp.jpeg"
     } else {
