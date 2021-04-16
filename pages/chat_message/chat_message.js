@@ -16,9 +16,9 @@ Page({
     // console.log("submit e:", e)
     console.log("submit data:", e.detail.value)
     let page = this
-    let user_id = app.globalData.userId;
+    let user_id = app.globalData.userId; //localhost: 2
     let base = app.globalData.baseUrl
-    let receiver_id = page.data.options.id
+    let receiver_id = page.data.options.id //localhost: 4
     let content = e.detail.value
     // { message: {content: 'test'} }
     if (content.content.length > 0) {
@@ -55,7 +55,7 @@ Page({
   onLoad: function (options) {
     // console.log(123, options)
     // set the users id to be able to display user messages on right hand side in html
-    let current_user_id = app.globalData.userId
+    let current_user_id = app.globalData.userId //localhost: 2
     this.setData({
       current_user_id,
       options,
@@ -66,8 +66,8 @@ Page({
 
   getMessages(options) {
     let page = this
-    let sender_id = options.id
-    let receiver_id = app.globalData.userId;
+    let sender_id = options.id //localhost: 2
+    let receiver_id = app.globalData.userId; //localhost: 4
     let base = app.globalData.baseUrl
     // console.log(123, `${base}/users/${sender_id}/messages/show?receiver_id=${receiver_id}`)
     // get messsages between current user and the sender they clicked on in index from database

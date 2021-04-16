@@ -47,11 +47,12 @@
     <view class="tool" wx:if="{{alarm === false}}" bindtap="audioPlay" >
       <image  src="../files/bell (1).png"></image>
     </view>
+
     <view wx:else class="tool" bindtap="audioPause" >
       <image  src="../files/bell (1).png"></image>
     </view>
 
-    <view class="tool" bindtap="">
+    <view class="tool" bindtap="writeDescription">
       <image src="../files/icons/writing.png"></image>
     </view>
 </view>
@@ -75,4 +76,19 @@
   <view class="tutorial"> 
     Sign Out!
   </view>
+</view>
+
+  <view wx:if="{{descriptionDialog}}">
+    
+    <form bindsubmit="submitDescription">
+      <view style="display: flex; justify-content: space-between; padding: 20rpx; margin: 20rpx 0 20rpx; width: 100%;">
+        <view
+        style="height: 45rpx; width: 62%; background: white; padding: 15rpx; border-radius: 5rpx; margin-left: 10rpx;">
+          <input name="content" placeholder="New Status"></input>
+        </view>
+          
+        <view style=""><button style="margin-right: 50rpx; display: inline-block; width: 170rpx; background: #307CFF; color: white;" form-type="submit">Send</button></view>
+      </view>
+    </form>
+  
 </view>
