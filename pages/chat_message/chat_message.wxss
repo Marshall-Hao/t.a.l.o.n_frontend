@@ -10,6 +10,7 @@ page {
   position: relative; 
 }
 
+/* if there are no messages to display */
 .length-check {
   text-align: center
 }
@@ -22,5 +23,84 @@ page {
   display: flex; 
   justify-content: flex-start; 
   margin: 20rpx 0 20rpx 0;
+}
+
+#user-display-right {
+  justify-content: flex-end; 
+}
+
+.avatar {
+  width: 40rpx; 
+  height: 20rpx; 
+  margin: 2rpx 10rpx 0 10rpx; 
+  padding: 20rpx; 
+  display: inline-block; 
+  border-radius: 5rpx;
+}
+
+.text-content {
+  background: #FFFFFF; 
+  padding: 20rpx; 
+  display: inline-block; 
+  border-radius: 5px;
+}
+
+/* Current user should see their messages on left and in green */
+.bg-green {
+  background: #03C160; 
+}
+
+.sender {
+  align-content: end;
+}
+
+/* block indent for conversation partner */
+.block-indent {
+  width: 35%;
+}
+
+/* block indent for current user */
+.block-indent-sender {
+  /* width: 60%; */
+}
+
+/* needed for scroll to bottom effect */
+#scrollToEnd {
+  padding: 72rpx;
+}
+
+.send-message-form {
+  position: fixed; 
+  padding-bottom: 30rpx;
+  bottom: 0; 
+  height: 10vh;
+  background: #E1E1E1; 
+  width: 100%;
+}
+
+.send-message-content {
+  display: flex; 
+  justify-content: space-between; 
+  padding: 20rpx; 
+  margin: 20rpx 0 20rpx; 
+  width: 100%;
+}
+
+.content-inner {
+  height: 45rpx; 
+  width: 62%; 
+  background: white; 
+  padding: 15rpx; 
+  border-radius: 5rpx; 
+  margin-left: 10rpx;
+}
+
+.btn-send {
+  margin-right: 50rpx!important; 
+  padding: 10rpx 20rpx 10rpx 20rpx;
+  display: inline-block; 
+  width: 170rpx!important; 
+  background: #307CFF; 
+  color: white;
 }
 

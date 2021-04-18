@@ -1,52 +1,48 @@
 <!--pages/chat_message/chat_message.wxml-->
-<view class="cards" style="padding: 10rpx; background: #EDEDED; height: 100%; position: relative; ">
-  <view class="length-check" wx:if="{{messages.length < 1}}" style="text-align: center">
+<view class="cards">
+  <view class="length-check" wx:if="{{messages.length < 1}}" >
     <text>Write your first message...</text>
   </view>
-  <view wx:for="{{messages}}" wx:key="unique" class="card-message" style="display: block;">
-    <view wx:if="{{item.user_id !== current_user_id}}" class="user-display"
-      style="display: flex; justify-content: flex-start; margin: 20rpx 0 20rpx 0;">
-      <view classstyle="width: 100rpx; height: 100rpx;">
-        <view
-          style="width: 40rpx; height: 20rpx; background: url(https://picsum.photos/200); margin: 2rpx 10rpx 0 10rpx; padding: 20rpx; display: inline-block; border-radius: 5rpx">
+  <view wx:for="{{messages}}" wx:key="unique" class="card-message">
+    <view wx:if="{{item.user_id !== current_user_id}}" class="user-display">
+      <view>
+       <!-- change to avatar url from backend -->
+        <view class="avatar"
+          style="background: url(https://picsum.photos/200)">
         </view>
       </view>
-      <view style="background: #FFFFFF; padding: 20rpx; display: inline-block; border-radius: 5px;">
+      <view class="text-content">
         <view class="h2">{{item.content}}</view>
         <!-- <view class="p">item created at {{item.created_at}}</view> -->
       </view>
-      <view style="width: 50%"></view>
+      <view class="block-indent"></view>
     </view>
 
-    <view wx:else style="display: flex; justify-content: flex-end; margin: 20rpx 0 20rpx 0;">
-      <view style="width: 35%"></view>
-      <view style="background: #03C160; padding: 20rpx; display: inline-block; border-radius: 5px;">
+    <view wx:else class="user-display" id="user-display-right">
+      <view class="block-indent"></view>
+      <view class="text-content bg-green">
         <view class="h2">{{item.content}}</view>
         <!-- <view class="h2">item content {{item.created_at}}</view> -->
       </view>
-      <view style="width: 100rpx">
-        <view
-          style="width: 40rpx; height: 20rpx; background: url(https://picsum.photos/200); margin: 2rpx 10rpx 0 10rpx; padding: 20rpx; display: inline-block; border-radius: 5rpx">
+      <view>
+
+        <!-- change to avatar url from backend -->
+        <view class="avatar"
+          style="background: url(https://picsum.photos/200)">
         </view>
       </view>
     </view>
   </view>
-  <view style="padding: 80rpx;" id="scrollToEnd"></view>
-
-  <view style="position: fixed; bottom: 0; height: 10vh border-top: 1px solid grey; background: #E1E1E1; width: 100%;">
-
+  <view id="scrollToEnd"></view>
+  <view class="send-message-form">
     <form bindsubmit="send">
-      <view style="display: flex; justify-content: space-between; padding: 20rpx; margin: 20rpx 0 20rpx; width: 100%;">
+      <view class="send-message-content">
         <view
-        style="height: 45rpx; width: 62%; background: white; padding: 15rpx; border-radius: 5rpx; margin-left: 10rpx;">
-          <input name="content" placeholder="Message" value="{{message}}"></input>
+        class="content-inner">
+          <input name="content" placeholder="Message"></input>
         </view>
-          
-        <view style=""><button style="margin-right: 50rpx; display: inline-block; width: 170rpx; background: #307CFF; color: white;" form-type="submit">Send</button></view>
+        <view><button class="btn-send" form-type="submit">Send</button></view>
       </view>
-      
-
     </form>
   </view>
-
 </view>
