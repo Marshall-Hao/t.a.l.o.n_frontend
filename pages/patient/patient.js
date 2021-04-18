@@ -138,7 +138,7 @@ Page({
   // }, 
 
   updateCurrentUser(currentUser) {
-    console.log(123456)
+    // console.log(123456)
     let page = this
     let id = page.data.currentUser.id //localhost: 2/4
     console.log(id)

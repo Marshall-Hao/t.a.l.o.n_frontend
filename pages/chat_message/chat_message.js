@@ -76,8 +76,10 @@ Page({
       success(res) {
         console.log(321, res.data.messages)
         page.setData({
-          messages: res.data.messages
+          messages: res.data.messages,
+          message: null
         })
+        
         wx.pageScrollTo({
           selector: '#scrollToEnd',
           duration: 0

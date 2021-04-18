@@ -174,18 +174,22 @@ Page({
     // console.log('=bindtapMap=', e),
     this.setData({
       statusBad: true,
-      show: false
+      show: false,
     })
   },
 
- pressOk(e) {
+ pressOk: function (event) {
+
     // console.log('=bindtapMap=', e),
+    let data = {
+      role: 'medic',
+      status: 'healthy'
+    }
+    this.updateCurrentUser(data)
     this.setData({
       statusOk: true,
       show: false
     })
-    let data = {stats: 'healthy'}
-    this.updateCurrentUser(data)
   },
 
   confirmStatus(e) {
