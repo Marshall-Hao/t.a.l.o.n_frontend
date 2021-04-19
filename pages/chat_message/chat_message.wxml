@@ -5,12 +5,7 @@
   </view>
   <view wx:for="{{messages}}" wx:key="unique" class="card-message">
     <view wx:if="{{item.user_id !== current_user_id}}" class="user-display">
-      <view>
-       <!-- change to avatar url from backend -->
-        <view class="avatar"
-          style="background: url(https://picsum.photos/200)">
-        </view>
-      </view>
+      <image class="avatar" src="{{item.sendavatar}}"></image>
       <view class="text-content">
         <view class="h2">{{item.content}}</view>
         <!-- <view class="p">item created at {{item.created_at}}</view> -->
@@ -27,9 +22,7 @@
       <view>
 
         <!-- change to avatar url from backend -->
-        <view class="avatar"
-          style="background: url(https://picsum.photos/200)">
-        </view>
+        <image class="avatar" src="{{item.recavatar}}"></image>
       </view>
     </view>
   </view>

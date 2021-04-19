@@ -35,6 +35,14 @@
   <image class="profile-pic"  src="{{userInfo.avatarUrl}}"></image>
   <view class="info">
     <view class="h2">{{userInfo.nickName}}</view>
+    <view class="healthyinfo" wx:if="{{currentUser.status=='healthy'}}" >
+      Status: {{currentUser.status}}
+    </view>
+    <view wx:else class="criticalinfo">Status: {{currentUser.status}}</view>
+  </view>
+  <view class="switch-status">
+    <switch checked="{{switchend}}"  bindchange="updateSwitch"/>
+    <!-- <view>{{switchend}}</view> -->
   </view>
 </view>
 
@@ -71,23 +79,34 @@
   </view>
 </view>
 
-<view class="tutorial-card-exit">
+<view class="tutorial-card-exit" bindtap="loginOut">
   <image class="tutorial-image" src="../files/logout.png"></image>
-  <view class="tutorial"> 
+  <view class="tutorial" > 
     Sign Out!
   </view>
 </view>
 
   <view wx:if="{{descriptionDialog}}">
     
-    <form bindsubmit="submitDescription">
+    <!-- <form bindsubmit="submitDescription">
       <view style="display: flex; justify-content: space-around; padding: 20rpx; margin: 20rpx 0 20rpx; width: 100%;">
         <view class=""
-        style="height: 45rpx; width: 62%; background: white; padding: 15rpx; border-radius: 5rpx; margin-left: 10rpx;">
+        style="height: 45rpx; width: 62%; background: white; border-radius: 5rpx; margin-left: 10rpx;">
           <input class="input" name="content" placeholder="New Status"></input>
         </view>
         <button class="send" form-type="submit">Send</button>
-      </view>
-    </form>
+      </view> -->
+    <view class="send-message-form">
+      <form bindsubmit="submitDescription">
+        <view class="send-message-content">
+          <view
+          class="content-inner">
+            <textarea name="content" placeholder="Status Description"></textarea>
+          </view>
+          <view><button class="btn-send" form-type="submit">Send</button></view>
+        </view>
+      </form>
+    </view>
+    <!-- </form> -->
   
 </view>

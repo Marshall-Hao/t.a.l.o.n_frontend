@@ -23,7 +23,7 @@ Page({
     // { message: {content: 'test'} }
     if (content.content.length > 0) {
       wx.request({
-        url: `${base}/users/${user_id}/messages/?receiver_id=${receiver_id}`,
+        url: `${base}/users/7/messages/?receiver_id=9`,
         method: 'POST',
         data: {
           message: content
@@ -71,8 +71,9 @@ Page({
     let base = app.globalData.baseUrl
     // console.log(123, `${base}/users/${sender_id}/messages/show?receiver_id=${receiver_id}`)
     // get messsages between current user and the sender they clicked on in index from database
+    // ${base}/users/${sender_id}/messages/show?receiver_id=${receiver_id}
     wx.request({
-      url: `${base}/users/${sender_id}/messages/show?receiver_id=${receiver_id}`,
+      url: `${base}/users/7/messages/show?receiver_id=9`,
       success(res) {
         console.log(321, res.data.messages)
         page.setData({

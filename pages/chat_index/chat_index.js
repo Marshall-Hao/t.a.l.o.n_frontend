@@ -9,7 +9,8 @@ Page({
   data: {
     messages: [],
     inputShowed: false,
-    inputVal: ""
+    inputVal: "",
+    useravator: ""
   },
 
   goToShow: function(e) {
@@ -53,9 +54,9 @@ selectResult: function (e) {
     let id = app.globalData.userId; //localhost: 2
     let base = app.globalData.baseUrl
     wx.request({
-      url: `${base}/users/${id}/messages`,
+      url: `${base}/users/7/messages`,
       success(res) {
-        console.log(res.data.messages)
+        console.log("message issss",res.data.messages)
         page.setData({
           messages: res.data.messages
         })

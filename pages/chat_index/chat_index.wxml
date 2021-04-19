@@ -3,13 +3,11 @@
   <!-- <mp-searchbar bindselectresult="selectResult" search="{{search}}"></mp-searchbar> -->
 </view>
 <view class="cards">
-  <view wx:for="{{messages}}" wx:key="unique" class="card-message" bindtap="goToShow" data-id="{{item[0]}}">
-    <view class="avatar"
-      style="background: url(https://picsum.photos/200)">
-    </view>
+  <view wx:for="{{messages}}" wx:key="unique" class="card-message" bindtap="goToShow" data-id="{{item.user_id}}">
+      <image class="rec-avatar" src="{{item.recavatar}}"></image>
     <view class="card-product-infos">
       <!-- <view class="h2">{{item[0]}}</view> -->
-      <view class="p">{{item[1]}}</view>
+      <view class="p">{{item.recusername}}</view>
     </view>
   </view>
 </view>
