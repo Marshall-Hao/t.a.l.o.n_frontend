@@ -254,6 +254,11 @@ loginOut() {
    page.updateCritical()
   },
   
+  onPullDownRefresh: function () {
+    var that = this;
+    this.onLoad() //重新加载onLoad()
+  },
+
   switchToStatus(switchend) {
     if (switchend) {
       return "healthy"
@@ -281,6 +286,9 @@ loginOut() {
   },
 
   onLoad: function (user) {
+    // let status = page.data.currentUser.status
+    // let switchend = page.data.switchend = page.statusToSwitch(status)
+    wx.stopPullDownRefresh()
   },
 
   onReady: function () {
