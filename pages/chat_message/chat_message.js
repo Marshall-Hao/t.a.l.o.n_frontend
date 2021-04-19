@@ -8,7 +8,8 @@ Page({
   data: {
     current_user_id: 0,
     options: 0,
-    messages: []
+    messages: [],
+    message: null
   },
 
 
@@ -23,12 +24,13 @@ Page({
     // { message: {content: 'test'} }
     if (content.content.length > 0) {
       wx.request({
-        url: `${base}/users/7/messages/?receiver_id=9`,
+        url: `${base}/users/${user_id}/messages/?receiver_id=${receiver_id}`,
         method: 'POST',
         data: {
           message: content
         },
         success(res) {
+          page.setData({message: null})
           // PUSH TO ARRAY
           // let new_message = res.data.message
           // console.log("original messages", page.data.messages)
@@ -66,18 +68,18 @@ Page({
 
   getMessages(options) {
     let page = this
-    let sender_id = options.id //localhost: 2
-    let receiver_id = app.globalData.userId; //localhost: 4
+    let receiver_id = options.id //localhost: 2
+    let sender_id = app.globalData.userId //localhost: 4
     let base = app.globalData.baseUrl
     // console.log(123, `${base}/users/${sender_id}/messages/show?receiver_id=${receiver_id}`)
     // get messsages between current user and the sender they clicked on in index from database
     // ${base}/users/${sender_id}/messages/show?receiver_id=${receiver_id}
     wx.request({
-      url: `${base}/users/7/messages/show?receiver_id=9`,
+      url: `${base}/users/${sender_id}/messages/show?receiver_id=${receiver_id}`,
       success(res) {
-        console.log(321, res.data.messages)
+        console.log(321, res.data)
         page.setData({
-          messages: res.data.messages,
+          messages: res.data,
           message: null
         })
         
@@ -101,7 +103,12 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-
+    // let current_user_id = app.globalData.userId //localhost: 2
+    // this.setData({
+    //   current_user_id,
+    //   options,
+    // })
+    // this.getMessages(options)
   },
 
   /**

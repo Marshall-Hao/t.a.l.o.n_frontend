@@ -16,11 +16,12 @@ Page({
   goToShow: function(e) {
     console.log("gotoshow", e)
     const id = e.currentTarget.dataset.id
+    console.log("gotoshowidddd", id)
     wx.navigateTo({
       url: `/pages/chat_message/chat_message?id=${id}`,
     })
   },
-
+  // ${id}
   search: function (value) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -32,11 +33,15 @@ selectResult: function (e) {
     console.log('select result', e.detail)
 },
 
+onPullDownRefresh: function () {
+  var that = this;
+  that.onLoad() //重新加载onLoad()
+},
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    wx.stopPullDownRefresh()
   },
 
   /**
@@ -54,7 +59,7 @@ selectResult: function (e) {
     let id = app.globalData.userId; //localhost: 2
     let base = app.globalData.baseUrl
     wx.request({
-      url: `${base}/users/7/messages`,
+      url: `${base}/users/${id}/messages`,
       success(res) {
         console.log("message issss",res.data.messages)
         page.setData({

@@ -170,6 +170,11 @@ Page({
       statusBad: true,
       show: false,
     })
+    wx.showToast({
+      title: '#WaitForHelp',
+      icon: 'success',
+      duration: 2000
+    })
   },
 
  pressOk: function (event) {
@@ -183,6 +188,11 @@ Page({
     this.setData({
       statusOk: true,
       show: false,
+    })
+    wx.showToast({
+      title: '#HereToHelp',
+      icon: 'success',
+      duration: 2000
     })
   },
 
@@ -369,7 +379,7 @@ Page({
       //   that.refreshLocation()   
       //   setInterval(function(){
       //     that.refreshLocation()
-      // }, 30000)
+      // }, 20000)
       }
     })  
   },

@@ -12,8 +12,8 @@
       "tabBorderStyle": "black",
       "iconPath1": "pages/files/icons/map.png",
       "selectedIconPath1": "pages/files/icons/map-s.png",
-      "iconPath2": "pages/files/icons/message.png",
-      "selectedIconPath2": "pages/files/icons/message-s.png",
+      "iconPath2": "pages/files/icons/chat.png",
+      "selectedIconPath2": "pages/files/icons/chat-s.png",
       "iconPath3": "pages/files/icons/user.png",
       "selectedIconPath3": "pages/files/icons/user-s.png"
   },
@@ -30,8 +30,8 @@
       "tabBorderStyle": "white",
       "iconPath1": "pages/files/icons/map-d.png",
       "selectedIconPath1": "pages/files/icons/map-s.png",
-      "iconPath2": "pages/files/icons/message-d.png",
-      "selectedIconPath2": "pages/files/icons/message-s.png",
+      "iconPath2": "pages/files/icons/chat-d.png",
+      "selectedIconPath2": "pages/files/icons/chat-s.png",
       "iconPath3": "pages/files/icons/user-d.png",
       "selectedIconPath3": "pages/files/icons/user-s.png"
   }

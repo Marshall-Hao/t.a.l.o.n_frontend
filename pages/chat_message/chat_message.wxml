@@ -3,8 +3,8 @@
   <view class="length-check" wx:if="{{messages.length < 1}}" >
     <text>Write your first message...</text>
   </view>
-  <view wx:for="{{messages}}" wx:key="unique" class="card-message">
-    <view wx:if="{{item.user_id !== current_user_id}}" class="user-display">
+  <view wx:for="{{messages}}"  class="card-message">
+    <view wx:if="{{item.user_id != current_user_id}}" class="user-display">
       <image class="avatar" src="{{item.sendavatar}}"></image>
       <view class="text-content">
         <view class="h2">{{item.content}}</view>
@@ -22,7 +22,7 @@
       <view>
 
         <!-- change to avatar url from backend -->
-        <image class="avatar" src="{{item.recavatar}}"></image>
+        <image class="avatar" src="{{item.sendavatar}}"></image>
       </view>
     </view>
   </view>
@@ -32,7 +32,7 @@
       <view class="send-message-content">
         <view
         class="content-inner">
-          <input name="content" placeholder="Message"></input>
+          <input name="content" placeholder="Message" value="{{message}}"></input>
         </view>
         <view><button class="btn-send" form-type="submit">Send</button></view>
       </view>
