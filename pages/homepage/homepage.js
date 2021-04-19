@@ -15,7 +15,7 @@ Page({
     longitude: 0, //地图界面中心的经度
     latitude: 0, //地图界面中心的纬度
     talonUserInfo: {
-      avator: '',
+      avatar: '',
       name: '',
       status: '',
       imgUrl: '',
@@ -23,13 +23,7 @@ Page({
       latitude: 0,
       location: '',
       description: ''
-
     },
-    imgArr:[
-      "../files/sos.jpeg",
-      "../files/sos.jpeg",
-      "../files/sos.jpeg",
-    ],
     markers: []
   },
 
@@ -188,7 +182,7 @@ Page({
     this.updateCurrentUser(data)
     this.setData({
       statusOk: true,
-      show: false
+      show: false,
     })
   },
 
@@ -237,7 +231,8 @@ Page({
     let talonUserInfo = this.data.talonUserInfo
     let marker = this.data.markers.find((marker) => {
       return marker.id === id
-    })
+    }) 
+    talonUserInfo.avatar = marker.avatarUrl
     talonUserInfo.name = marker.name
     talonUserInfo.status = marker.status
     talonUserInfo.longitude = marker.longitude
@@ -262,7 +257,7 @@ Page({
   preview(event) {
     // console.log("---------", event.currentTarget)
     // let currentUrl = event.currentTarget.dataset.src
-    var imgArr = this.data.imgArr;
+    var imgArr = this.data.talonUserInfo.imgUrl;
     wx.previewImage({
       // current: "../files/sos.jpeg", // 当前显示图片的http链接
       urls: imgArr // 需要预览的图片http链接列表
@@ -277,17 +272,20 @@ Page({
     wx.getUserProfile({
       desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
-        // console.log('res:', res)
+        console.log('res:', res)
         page.setData({
           userInfo: res.userInfo
         })
         app.globalData.userInfo = res.userInfo
         wx.setStorageSync('userInfo', res.userInfo)
         let wechatAccountNickname = res.userInfo.nickName
+        let wechatAccountAvatar = res.userInfo.avatarUrl
+        console.log("wechatavatar is", wechatAccountAvata)
         let longitude = this.data.longitude
         let latitude = this.data.latitude
         let data = {
           wechat_account: wechatAccountNickname,
+          avatar: wechatAccountAvatar,
           location: {
             latitude: latitude,
             longitude: longitude
@@ -408,9 +406,9 @@ showPosterPage() {
     wx.request({
       url: `${base}/users`,
       success(res) {
-        // console.log("res", res)
+        console.log("res", res)
         let users = res.data.users
-        // console.log("users",users)
+        console.log("users",users)
         let markers = users.map((user) => {
           // console.log("user is", user)
           return page.userToMarker(user)

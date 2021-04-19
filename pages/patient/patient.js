@@ -5,19 +5,13 @@ Page({
    */
   data: {
       descriptionDialog: false,
-      description: "",
+      description: '',
       src: 'https://project-lw.oss-cn-shenzhen.aliyuncs.com/bell_sound_effect.mp3?versionId=CAEQHBiBgMDWjt3UxRciIDdiZDBjM2Q1YzZiNDRiMGI5ZWZmNTM2MmI1YTYxNDFl',
       alarm: false,
       user: {},
       currentUser: {},
       longitude: 0, //地图界面中心的经度
       latitude: 0, //地图界面中心的纬度
-      talonUserInfo: {
-        name: '',
-        status: '',
-        imgUrl: ''
-      },
-      markers: []
   },
 
   writeDescription(){
@@ -28,13 +22,18 @@ Page({
 
   submitDescription(e){
     // console.log("submit data:", e.detail.value)
+    let page = this
     let description = e.detail.value.content
-    this.setData({
+    page.setData({
       description,
       descriptionDialog: false
     })
-    this.updateDbAvatarAndDescription()
+    page.updateDbAvatarAndDescription()
   },
+
+
+
+
 
   checkSignedIn(){
     // console.log('setting from storage')
@@ -129,7 +128,12 @@ Page({
     })
 },
 
-
+loginOut() {
+  let page = this
+  page.setData ({
+    signedIn: false
+  })
+},
 
   // goToHomepage() {
   //   wx.navigateTo({
@@ -229,18 +233,48 @@ Page({
   error(e) {
     console.log(e.detail)
   },
-  updateCritical(){
+  // updateCritical(){
+  //   let page = this
+  //   let status = page.data.currentUser.status = 'non-critical'
+  //   let currentUser = page.data.currentUser
+  //   page.setData({status})
+  //   console.log('Current user', page.data.currentUser.status)
+  //   return page.updateCurrentUser(currentUser)
+  // },
+  updateSwitch(e) {
+    console.log("switch is:", e)
     let page = this
-    let status = page.data.currentUser.status = 'non-critical'
-    let currentUser = page.data.currentUser
-    page.setData({status})
-    console.log('Current user', page.data.currentUser.status)
-    return page.updateCurrentUser(currentUser)
+    // let status = page.data.currentUser.status
+    // let currentUser = page.data.currentUser
+    let switchend = page.data.switchend = !page.data.switchend
+    page.setData({
+      switchend
+    })
+    // console.log('Current user', page.data.currentUser.status)
+   page.updateCritical()
   },
-  updateNonCritical() {
+  
+  switchToStatus(switchend) {
+    if (switchend) {
+      return "healthy"
+    } else {
+      return "critical"
+    }
+  },
+
+  statusToSwitch(status) {
+    if ( status === "healthy") {
+      return true
+    } else {
+      return false
+    }
+  },
+
+  updateCritical() {
     let page = this
-    let status = page.data.currentUser.status = 'critical'
     let currentUser = page.data.currentUser
+    let switchend = page.data.switchend
+    let status = page.data.currentUser.status = page.switchToStatus(switchend)
     page.setData({status})
     console.log('Current user', page.data.currentUser.status)
     return page.updateCurrentUser(currentUser)
@@ -270,7 +304,8 @@ Page({
     let currentUser = wx.getStorageSync('currentUser')
     console.log({currentUser})
     page.setData({currentUser})
-    
+    let status = page.data.currentUser.status
+    let switchend = page.data.switchend = page.statusToSwitch(status)
     page.ctx = wx.createCameraContext()
     // page.setData({user})
     // var that = this;

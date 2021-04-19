@@ -57,6 +57,18 @@ page {
   margin: 0;
 }
 
+.healthyinfo {
+  font-size: 28rpx;
+  color:#17B824;
+  font-weight: bold;
+}
+
+.criticalinfo {
+  font-size: 28rpx;
+  color: #E67E22;
+  font-weight: bold;
+}
+
 .tools-card {
   margin-top: 4rpx;
   display: grid;
@@ -148,7 +160,7 @@ page {
   padding: 0 24rpx;
 }
 
-.send:not([size='mini'])
+/* .send:not([size='mini'])
 {
   height: 80rpx;
   line-height: 42rpx;
@@ -156,7 +168,62 @@ page {
   border-radius: 25rpx;
   background: #17B824;
   font-weight: medium;
+} */
+
+.send-message-form {
+  left: 0;
+  height: 245rpx; 
+  background: rgb(254, 255, 255); 
+  width: 100%;
 }
+
+.send-message-content {
+  display: flex; 
+  justify-content: space-between; 
+  padding: 20rpx; 
+  margin: 20rpx 0 20rpx; 
+  width: 100%;
+}
+
+.content-inner {
+  width: 62%; 
+  background: rgb(248, 248, 248); 
+  padding: 15rpx; 
+  border-radius: 10rpx; 
+  margin-left: 10rpx;
+}
+
+textarea {
+  height: 175rpx;
+  width: 100%;
+}
+
+.btn-send {
+  margin-right: 50rpx!important; 
+  padding: 10rpx 20rpx 10rpx 20rpx;
+  display: inline-block; 
+  width: 170rpx!important; 
+  height: 72rpx;
+  background: #17B824; 
+  color: #212121;
+  font-weight: 420;
+}
+
+.switch-status {
+  position: absolute;
+  right: 15rpx;
+}
+
+switch .wx-switch-input {
+  color: #17B824;
+}
+switch .wx-switch-input::before {
+  background: #E67E22;
+}
+
+/* switch .wx-switch-input::after {
+  background: #E67E22;
+} */
 
 @media (prefers-color-scheme: dark) {
   page{
@@ -307,9 +374,22 @@ page {
     padding: 0 24rpx;
   }
 
-  .input {
+  /* .input {
+    background: #181E23;
+    color: #c0c2c5;
+    height: 200rpx;
+  } */
+  .send-message-form {
+    background:#181E23;
+  }
+  
+  .content-inner {
+    background: #2c3440;
+  }
+
+  .btn-send {
     color: white;
-    opacity: 0.7;
+    opacity: 0.95;
   }
 }
 
