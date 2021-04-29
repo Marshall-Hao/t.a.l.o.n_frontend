@@ -1,13 +1,10 @@
 {
   "pages":[
-    "pages/index/index",
     "pages/homepage/homepage",
     "pages/patient/patient",
-    "pages/poster/poster",
-    "pages/chat/chat",
-    "pages/test/test",
     "pages/chat_index/chat_index",
-    "pages/chat_message/chat_message"
+    "pages/chat_message/chat_message",
+    "pages/about/about"
   ],
 
   "requiredBackgroundModes": ["audio"],

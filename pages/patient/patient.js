@@ -135,12 +135,6 @@ loginOut() {
   })
 },
 
-  // goToHomepage() {
-  //   wx.navigateTo({
-  //     url: '/pages/homepage/homepage',
-  //   })
-  // }, 
-
   updateCurrentUser(currentUser) {
     // console.log(123456)
     let page = this
@@ -162,11 +156,13 @@ loginOut() {
 
   updateDbAvatarAndDescription(){
     let page = this
+    let wechat_account = page.data.userInfo.nickName
     let avatar = page.data.userInfo.avatarUrl
     let description = page.data.description;
     let base = app.globalData.baseUrl;
     let id = app.globalData.userId; //localhost: 2/4
     let body = {
+      wechat_account: wechat_account,
       avatar: avatar,
       description: description
     }
@@ -233,14 +229,7 @@ loginOut() {
   error(e) {
     console.log(e.detail)
   },
-  // updateCritical(){
-  //   let page = this
-  //   let status = page.data.currentUser.status = 'non-critical'
-  //   let currentUser = page.data.currentUser
-  //   page.setData({status})
-  //   console.log('Current user', page.data.currentUser.status)
-  //   return page.updateCurrentUser(currentUser)
-  // },
+ 
   updateSwitch(e) {
     console.log("switch is:", e)
     let page = this
@@ -285,6 +274,12 @@ loginOut() {
     return page.updateCurrentUser(currentUser)
   },
 
+  goToAbout() {
+    wx.navigateTo({
+      url: '/pages/about/about',
+    })
+  },
+
   onLoad: function (user) {
     // let status = page.data.currentUser.status
     // let switchend = page.data.switchend = page.statusToSwitch(status)
@@ -315,71 +310,5 @@ loginOut() {
     let status = page.data.currentUser.status
     let switchend = page.data.switchend = page.statusToSwitch(status)
     page.ctx = wx.createCameraContext()
-    // page.setData({user})
-    // var that = this;
-    // wx.getLocation({
-    //   type: "wgs84",
-    //   isHighAccuracy: true,
-    //   success: function (res) {
-    //     var latitude = res.latitude;
-    //     var longitude = res.longitude;
-    //     console.log("当前位置的经纬度为：", res.latitude, res.longitude);
-    //     that.setData({
-    //       latitude: res.latitude,
-    //       longitude: res.longitude,
-    //     })
-    //   }
-    // })
-    // let page = this
-    // console.log(111, page.options)
-    // page.ctx = wx.createCameraContext()
-    // page.setData({user})
-    // var that = this;
-    // wx.getLocation({
-    //   type: "wgs84",
-    //   isHighAccuracy: true,
-    //   success: function (res) {
-    //     var latitude = res.latitude;
-    //     var longitude = res.longitude;
-    //     console.log("当前位置的经纬度为：", res.latitude, res.longitude);
-    //     that.setData({
-    //       latitude: res.latitude,
-    //       longitude: res.longitude,
-    //     })
-    //   }
-    // })
-    // let page = this
-    // let base = app.globalData.baseUrl
-    // let markers = page.data.markers
-    // let user = page.data.user
-    // console.log("user",user)
-    // wx.request({
-    //   url: `${base}/users/${user.id}`,
-    //   success(res) {
-    //     const currentUser = res.data;
-    //     page.setData({currentUser})
-    //     console.log(currentUser)
-    //   }
-    // })
-    // wx.request({
-    //   url: `${base}/users`,
-    //   success(res) {
-    //     // console.log("res", res)
-    //     let users = res.data.users
-    //     console.log("users",users)
-    //     let markers = users.map((user) => {
-    //       // console.log("user is", user)
-    //       return page.userToMarker(user)
-    //     })
-    //     markers = markers.filter(marker => marker.hasOwnProperty("latitude"))
-    //     // console.log(markers)
-    //     page.setData({
-    //       markers
-    //     })
-    //     // page.data.markers.push(res.data.users)
-    //     // console.log(markers)
-        
-    //   }
-    // })
   }
 })

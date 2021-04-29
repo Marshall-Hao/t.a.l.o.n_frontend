@@ -1,7 +1,0 @@
-<!--pages/poster/poster.wxml-->
-<view class="poster">
-  <image class="poster-page-logo" src="../files/Talon-logo.png" alt=""></image>
-  <image class="poster-image" src="/pages/files/helping.jpg"></image>
-  
-
-</view>

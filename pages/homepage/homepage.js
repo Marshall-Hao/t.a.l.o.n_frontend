@@ -95,7 +95,8 @@ Page({
 
     let data = {
       role: 'patient',
-      status: 'critical'
+      status: 'critical',
+      show: false,
     }
     let callback = this.navigateToPatient(id)
     this.updateCurrentUser(data, callback)
@@ -370,16 +371,16 @@ Page({
         var latitude = res.latitude;
         var longitude = res.longitude;
         // console.log("当前位置的经纬度为：", res.latitude, res.longitude);
+        // that.refreshLocation()
         that.setData({
           latitude: res.latitude,
           longitude: res.longitude,
         })
         if (longitude !== 0) setTimeout(that.showPosterPage, 2600);
         
-      //   that.refreshLocation()   
-      //   setInterval(function(){
-      //     that.refreshLocation()
-      // }, 20000)
+        setInterval(function(){
+          that.refreshLocation()
+        }, 20000)
       }
     })  
   },

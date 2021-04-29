@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "mp-dialog": "weui-miniprogram/dialog/dialog",
-    "mp-loading": "weui-miniprogram/loading/loading"
-  } ,
-  "navigationBarTitleText": ""
-}

@@ -31,19 +31,6 @@ Page({
         },
         success(res) {
           page.setData({message: null})
-          // PUSH TO ARRAY
-          // let new_message = res.data.message
-          // console.log("original messages", page.data.messages)
-          // let messages = page.data.messages
-          // messages.push(new_message)
-          // page.setData({
-          //   messages,
-          // })
-          // wx.pageScrollTo({
-          //   selector: '#scrollToEnd',
-          //   duration: 0
-          // })
-          // REFRESH LOG
           let options = page.data.options
           page.getMessages(options)
         }
@@ -55,8 +42,6 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    // console.log(123, options)
-    // set the users id to be able to display user messages on right hand side in html
     let current_user_id = app.globalData.userId //localhost: 2
     this.setData({
       current_user_id,
@@ -71,9 +56,6 @@ Page({
     let receiver_id = options.id //localhost: 2
     let sender_id = app.globalData.userId //localhost: 4
     let base = app.globalData.baseUrl
-    // console.log(123, `${base}/users/${sender_id}/messages/show?receiver_id=${receiver_id}`)
-    // get messsages between current user and the sender they clicked on in index from database
-    // ${base}/users/${sender_id}/messages/show?receiver_id=${receiver_id}
     wx.request({
       url: `${base}/users/${sender_id}/messages/show?receiver_id=${receiver_id}`,
       success(res) {
@@ -103,12 +85,6 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-    // let current_user_id = app.globalData.userId //localhost: 2
-    // this.setData({
-    //   current_user_id,
-    //   options,
-    // })
-    // this.getMessages(options)
   },
 
   /**

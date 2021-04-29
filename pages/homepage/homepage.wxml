@@ -1,9 +1,3 @@
-<!-- <view class="userinfo">
-  <block wx:if="{{!hasUserInfo}}">
-    <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> Sign in</button>
-    <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> Sign in </button>
-  </block>
-</view> -->
 <view hover-class="none" hover-stop-propagation="false" style="width: 100%; height: 100%;">
 
   <map id="map" longitude="{{longitude}}" latitude=" {{latitude}}" markers="{{markers}}" scale="14" show-location
@@ -84,12 +78,6 @@
 
       </view>
     </view>
-  </view>
-  <view class="userinfo">
-    <block wx:if="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile" type="primary"> Sign in</button>
-      <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> Sign innn</button>
-    </block>
   </view>
 
 </view>
