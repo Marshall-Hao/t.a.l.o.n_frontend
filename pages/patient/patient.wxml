@@ -1,31 +1,3 @@
-<!-- 
-  <view class="teal-bg">
-      <view class="patient-flexbox">
-    <audio  style="display: none" src="{{src}}" id="myAudio" controls loop></audio>
-    <view wx:if="{{alarm === false}}">
-      <image src="/pages/files/icons/bell.png" class="bell" bindtap="audioPlay" id="myAudio"></image>
-    </view>
-    <view wx:else>
-      <image src="/pages/files/icons/bell.png" class="bell-pressed" bindtap="audioPause" id="myAudio"></image>
-
-    </view>
-    <view bindtap="takePhoto" class='' >
-      <image class="camera" src="/pages/files/icons/camera.png"></image>
-    </view>
-  </view>
-
-  <view class="" wx:if="{{currentUser.status === 'critical'}}">
-    <button data-id="{{currentUser}}" style="" bindtap="updateCritical" class="status-btn non-crit">Don't require immediate help</button>
-  </view>
-  <view class="" wx:else>
-    <button class="btn-status" data-id="{{currentUser}}"style="" bindtap="updateNonCritical" class="status-btn crit">Require immediate help</button>
-  </view>
-
-  <view class="logo-container" bindtap="goToHomepage">
-    <image src="/pages/files/icons/Talon-logo.png" alt=""></image>
-  </view>
-    </view> -->
-
 <view  class="login" wx:if="{{!signedIn}}" bindtap="getUserProfile"> 
   <view class="login-info">
     Sign In
@@ -42,7 +14,6 @@
   </view>
   <view class="switch-status">
     <switch checked="{{switchend}}"  bindchange="updateSwitch"/>
-    <!-- <view>{{switchend}}</view> -->
   </view>
 </view>
 
@@ -65,7 +36,7 @@
     </view>
 </view>
 
-<view class="tutorial-card">
+<view class="tutorial-card" bindtap="goToAbout">
   <image class="tutorial-image" src="../files/info.png"></image>
   <view class="tutorial"> 
     What is Talon?  
@@ -88,14 +59,6 @@
 
   <view wx:if="{{descriptionDialog}}">
     
-    <!-- <form bindsubmit="submitDescription">
-      <view style="display: flex; justify-content: space-around; padding: 20rpx; margin: 20rpx 0 20rpx; width: 100%;">
-        <view class=""
-        style="height: 45rpx; width: 62%; background: white; border-radius: 5rpx; margin-left: 10rpx;">
-          <input class="input" name="content" placeholder="New Status"></input>
-        </view>
-        <button class="send" form-type="submit">Send</button>
-      </view> -->
     <view class="send-message-form">
       <form bindsubmit="submitDescription">
         <view class="send-message-content">
@@ -107,6 +70,5 @@
         </view>
       </form>
     </view>
-    <!-- </form> -->
   
 </view>
